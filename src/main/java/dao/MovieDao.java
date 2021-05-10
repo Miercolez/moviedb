@@ -31,4 +31,15 @@ public class MovieDao {
         em.close();
 
     }
+
+    public void deleteMovie(Long id) {
+        EntityManager em = emf.createEntityManager();
+        Movie movie =em.find(Movie.class,id);
+
+        em.getTransaction().begin();
+        em.remove(movie);
+        em.getTransaction().commit();
+
+        em.close();
+    }
 }

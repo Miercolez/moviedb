@@ -65,7 +65,7 @@ public class Menus {
 //        System.out.println("[5] - Change movie title");
 //        System.out.println("[6] - Change actor");
 //        System.out.println("[7] - Change director");
-//        System.out.println("[8] - Delete movie");
+        System.out.println("[8] - Delete movie");
 //        System.out.println("[9] - Remove actor from movie");
 //        System.out.println("[10] - Remove director from movie");
 //        System.out.println("[11] - Remove genre from movie");
@@ -107,7 +107,9 @@ public class Menus {
 
                 break;
             case 8:
-
+                System.out.println("Movie id: ");
+                Long id = readLong();
+                Functions.deleteMovie(id);
                 break;
             case 9:
 
