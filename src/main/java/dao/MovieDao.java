@@ -5,6 +5,7 @@ import models.Movie;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class MovieDao {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
@@ -15,5 +16,19 @@ public class MovieDao {
         em.persist(movie);
         em.getTransaction().commit();
         em.close();
+    }
+
+    public void showAllMovies() {
+
+        EntityManager em = emf.createEntityManager();
+
+        List<Movie> movies = em.createNamedQuery("Movie.findAll", Movie.class).getResultList();
+
+        for (Movie movie : movies) {
+            System.out.println(movie);
+        }
+
+        em.close();
+
     }
 }

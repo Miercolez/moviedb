@@ -69,7 +69,7 @@ public class Menus {
 //        System.out.println("[9] - Remove actor from movie");
 //        System.out.println("[10] - Remove director from movie");
 //        System.out.println("[11] - Remove genre from movie");
-//        System.out.println("[12] - Show all movies");
+        System.out.println("[12] - Show all movies");
         System.out.println("[0] - Return to main");
 
         System.out.print("\nMake a choice: ");
@@ -119,7 +119,7 @@ public class Menus {
 
                 break;
             case 12:
-
+                Functions.showAllMovies();
                 break;
             case 0:
                 loopSubMenus = false;

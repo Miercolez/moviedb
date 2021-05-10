@@ -12,4 +12,10 @@ public class Functions {
 
         movieDao.createNewMovie(movie);
     }
+
+    public static void showAllMovies() {
+
+        movieDao.showAllMovies();
+
+    }
 }
