@@ -9,7 +9,7 @@ import static main.Menus.mainMenu;
 public class Main {
 
     static EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
-    static boolean loopMainMenu = true;
+    public static boolean loopMainMenu = true;
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {

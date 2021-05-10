@@ -4,12 +4,10 @@ import static main.Main.sc;
 
 public class Menus {
 
-    static boolean loopMainMenu = true;
     static boolean loopSubMenus = true;
 
     public static void mainMenu() {
 
-        loopSubMenus = true;
 
         System.out.println("\n--|| Main menu ||--");
         System.out.println("[1] - Movie");
@@ -50,7 +48,7 @@ public class Menus {
                 }
                 break;
             case 0:
-                loopMainMenu = false;
+                Main.loopMainMenu = false;
                 break;
             default:
                 System.out.println("Wrong input!");
