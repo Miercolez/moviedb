@@ -1,6 +1,7 @@
 package main;
 
-import static main.Main.sc;
+import static main.Main.*;
+import static main.Read.*;
 
 public class Menus {
 
@@ -57,9 +58,9 @@ public class Menus {
 
     private static void movieMenu() {
         System.out.println("\n--|| Movie menu ||--");
-        System.out.println("[1] - Add movie");
-        System.out.println("[2] - Add excisting actor");
-        System.out.println("[3] - Add excisting director");
+        System.out.println("[1] - Add new movie");
+        System.out.println("[2] - Add existing actor");
+        System.out.println("[3] - Add existing director");
         System.out.println("[4] - Add genre");
         System.out.println("[5] - Change movie title");
         System.out.println("[6] - Change actor");
@@ -77,7 +78,15 @@ public class Menus {
 
         switch (choice) {
             case 1:
-                
+                System.out.println("Movie title: ");
+                String movieTitle = readLine();
+                System.out.println("Duration: ");
+                Long movieDuration = readLong();
+                System.out.println("Release year: ");
+                int releaseYear = readInt();
+
+                Functions.createNewMovie(movieTitle, movieDuration, releaseYear);
+
                 break;
             case 2:
 
