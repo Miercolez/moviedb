@@ -18,4 +18,12 @@ public class Functions {
         movieDao.showAllMovies();
 
     }
+
+    public static void deleteMovie(Long id) {
+        movieDao.deleteMovie(id);
+    }
+
+    public static void changeMovieTitle(Long id, String title) {
+        movieDao.changeMovieTitle(id,title);
+    }
 }

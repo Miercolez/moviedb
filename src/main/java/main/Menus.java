@@ -62,10 +62,10 @@ public class Menus {
 //        System.out.println("[2] - Add existing actor");
 //        System.out.println("[3] - Add existing director");
 //        System.out.println("[4] - Add genre");
-//        System.out.println("[5] - Change movie title");
+        System.out.println("[5] - Change movie title");
 //        System.out.println("[6] - Change actor");
 //        System.out.println("[7] - Change director");
-//        System.out.println("[8] - Delete movie");
+        System.out.println("[8] - Delete movie");
 //        System.out.println("[9] - Remove actor from movie");
 //        System.out.println("[10] - Remove director from movie");
 //        System.out.println("[11] - Remove genre from movie");
@@ -78,15 +78,7 @@ public class Menus {
 
         switch (choice) {
             case 1:
-                System.out.println("Movie title: ");
-                String movieTitle = readLine();
-                System.out.println("Duration: ");
-                Long movieDuration = readLong();
-                System.out.println("Release year: ");
-                int releaseYear = readInt();
-
-                Functions.createNewMovie(movieTitle, movieDuration, releaseYear);
-
+                addNewMovie();
                 break;
             case 2:
 
@@ -98,7 +90,9 @@ public class Menus {
 
                 break;
             case 5:
+                showAllMovies();
 
+                changeMovieTitle();
                 break;
             case 6:
 
@@ -107,7 +101,9 @@ public class Menus {
 
                 break;
             case 8:
+                showAllMovies();
 
+                deleteMovie();
                 break;
             case 9:
 
@@ -119,7 +115,7 @@ public class Menus {
 
                 break;
             case 12:
-                Functions.showAllMovies();
+                showAllMovies();
                 break;
             case 0:
                 loopSubMenus = false;
@@ -127,6 +123,38 @@ public class Menus {
             default:
                 System.out.println("Wrong input!");
         }
+    }
+
+    private static void showAllMovies() {
+        Functions.showAllMovies();
+        System.out.println();
+    }
+
+    private static void deleteMovie() {
+        System.out.println("Movie id: ");
+        Long movieId = readLong();
+        Functions.deleteMovie(movieId);
+    }
+
+    private static void changeMovieTitle() {
+        System.out.println("Movie id: ");
+        Long movieId = readLong();
+
+        System.out.println("New title: ");
+        String newMovieTitle = readLine();
+
+        Functions.changeMovieTitle(movieId,newMovieTitle);
+    }
+
+    private static void addNewMovie() {
+        System.out.println("Movie title: ");
+        String movieTitle = readLine();
+        System.out.println("Duration: ");
+        Long movieDuration = readLong();
+        System.out.println("Release year: ");
+        int releaseYear = readInt();
+
+        Functions.createNewMovie(movieTitle, movieDuration, releaseYear);
     }
 
     private static void actorMenu() {

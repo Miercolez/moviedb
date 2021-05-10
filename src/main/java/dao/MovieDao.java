@@ -12,9 +12,11 @@ public class MovieDao {
 
     public void createNewMovie(Movie movie) {
         EntityManager em = emf.createEntityManager();
+
         em.getTransaction().begin();
         em.persist(movie);
         em.getTransaction().commit();
+
         em.close();
     }
 
@@ -30,5 +32,29 @@ public class MovieDao {
 
         em.close();
 
+    }
+
+    public void deleteMovie(Long id) {
+        EntityManager em = emf.createEntityManager();
+        Movie movie =em.find(Movie.class,id);
+
+        em.getTransaction().begin();
+        em.remove(movie);
+        em.getTransaction().commit();
+
+        em.close();
+    }
+
+    public void changeMovieTitle(Long id, String title) {
+        EntityManager em = emf.createEntityManager();
+
+        Movie movie = em.find(Movie.class, id);
+        movie.setTitle(title);
+
+        em.getTransaction().begin();
+        em.merge(movie);
+        em.getTransaction().commit();
+
+        em.close();
     }
 }
