@@ -4,7 +4,7 @@ import Functions.DirectorFunctions;
 
 import static main.Main.sc;
 import static main.Read.*;
-import static utility.GenderChoice.chooseGender;
+import static utility.Genderchoice.chooseGender;
 
 public class DirectorMenu {
 
