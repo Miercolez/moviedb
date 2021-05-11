@@ -1,6 +1,7 @@
 package dao;
 
 import models.Actor;
+import models.Director;
 import models.Movie;
 
 import javax.persistence.EntityManager;
@@ -65,6 +66,21 @@ public class MovieDao {
         Actor actor = em.find(Actor.class, actorId);
         em.getTransaction().begin();
         actor.addMovie(movie);
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    public void addExistingDirectorToExistingMovie(Long directorId, Long movieId) {
+        EntityManager em = emf.createEntityManager();
+
+        Director director = em.find(Director.class, directorId);
+        Movie movie = em.find(Movie.class, movieId);
+
+        em.getTransaction().begin();
+
+//        director.addMovie(movie);
+        movie.setDirector(director);
+
         em.getTransaction().commit();
         em.close();
     }

@@ -77,7 +77,7 @@ public class DirectorMenu {
 
     }
 
-    private static void showAllDirectors() {
+    public static void showAllDirectors() {
         DirectorFunctions.showAllDirectors();
     }
 

@@ -1,8 +1,10 @@
 package Menus;
 
 import Functions.MovieFunctions;
+import models.Movie;
 
 import static Menus.ActorMenu.showAllActors;
+import static Menus.DirectorMenu.showAllDirectors;
 import static main.Main.*;
 import static main.Read.*;
 
@@ -14,7 +16,7 @@ public class MovieMenu {
             System.out.println("\n--|| Movie menu ||--");
             System.out.println("[1] - Add new movie");
         System.out.println("[2] - Add existing actor to existing movie");
-//        System.out.println("[3] - Add existing director");
+        System.out.println("[3] - Add existing director to existing movie");
 //        System.out.println("[4] - Add genre");
             System.out.println("[5] - Change movie title");
 //        System.out.println("[6] - Change actor");
@@ -38,7 +40,7 @@ public class MovieMenu {
                     addExistingActorToExistingMovie();
                     break;
                 case 3:
-
+                    addExistingDirectorToExistingMovie();
                     break;
                 case 4:
 
@@ -78,6 +80,18 @@ public class MovieMenu {
                     System.out.println("Wrong input!");
             }
         }
+    }
+
+    private static void addExistingDirectorToExistingMovie() {
+        showAllDirectors();
+        System.out.println("Director id: ");
+        Long directorId = readLong();
+
+        showAllMovies();
+        System.out.println("Movie id: ");
+        Long movieId = readLong();
+
+        MovieFunctions.addExistingDirectorToExistingMovie(directorId, movieId);
     }
 
     private static void addExistingActorToExistingMovie() {

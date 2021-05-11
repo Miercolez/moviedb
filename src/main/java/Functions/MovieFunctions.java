@@ -31,4 +31,10 @@ public class MovieFunctions {
         movieDao.addExistingActorToExistingMovie(actorId, movieId);
 
     }
+
+    public static void addExistingDirectorToExistingMovie(Long directorId, Long movieId) {
+
+        movieDao.addExistingDirectorToExistingMovie(directorId, movieId);
+
+    }
 }
