@@ -20,7 +20,6 @@ public class Main {
 
     public static void mainMenu() {
 
-
         System.out.println("\n--|| Main menu ||--");
         System.out.println("[1] - Movie");
         System.out.println("[2] - Actor");
