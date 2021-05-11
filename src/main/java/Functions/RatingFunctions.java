@@ -13,4 +13,20 @@ public class RatingFunctions {
 
         ratingDao.addRating(rating, movieId);
     }
+
+    public static void deleteRating(Long ratingId) {
+
+        ratingDao.deleteRating(ratingId);
+    }
+
+    public static void showAllRatings() {
+
+        ratingDao.showAllRatings();
+
+    }
+
+    public static void changeRating(Long ratingId, int newRating) {
+
+        ratingDao.changeRating(ratingId, newRating);
+    }
 }
