@@ -28,7 +28,7 @@ import javax.persistence.NamedQuery;
 public class MovieRating {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Basic

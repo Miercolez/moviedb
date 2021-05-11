@@ -2,6 +2,7 @@ package Menus;
 
 import Functions.ActorFunctions;
 import models.Actor;
+import utility.GenderChoice;
 
 import static main.Main.sc;
 import static main.Read.*;
@@ -78,21 +79,22 @@ public class ActorMenu {
         String actorName = readLine();
         System.out.println("Age: ");
         int actorAge = readInt();
-        String actorGender;
-        System.out.println("Gender: ");
-        System.out.println("1. Man");
-        System.out.println("2. Woman");
-        int choice = readInt();
-        if (choice == 1) {
-            actorGender = "Man";
-            ActorFunctions.addNewActor(actorName, actorAge, actorGender);
-        } else if (choice == 2) {
-            actorGender = "Woman";
-            ActorFunctions.addNewActor(actorName, actorAge, actorGender);
-        } else {
-            System.out.println("Wrong input, that gender does not exist");
-        }
+        String actorGender = GenderChoice.chooseGender();
+//        System.out.println("Gender: ");
+//        System.out.println("1. Man");
+//        System.out.println("2. Woman");
+//        int choice = readInt();
+//        if (choice == 1) {
+//            actorGender = "Man";
+//            ActorFunctions.addNewActor(actorName, actorAge, actorGender);
+//        } else if (choice == 2) {
+//            actorGender = "Woman";
+//
+//        } else {
+//            System.out.println("Wrong input, that gender does not exist");
+//        }
 
+        ActorFunctions.addNewActor(actorName, actorAge, actorGender);
 
     }
 }
