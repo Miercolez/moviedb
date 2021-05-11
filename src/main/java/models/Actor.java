@@ -31,7 +31,7 @@ import javax.persistence.NamedQuery;
 public class Actor {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     public Actor() {

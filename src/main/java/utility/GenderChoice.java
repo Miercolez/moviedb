@@ -2,7 +2,7 @@ package utility;
 
 import static main.Main.sc;
 
-public class Genderchoice {
+public class GenderChoice {
 
     public static String chooseGender() {
         String gender;

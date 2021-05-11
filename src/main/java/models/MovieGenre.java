@@ -30,7 +30,7 @@ import javax.persistence.NamedQuery;
 public class MovieGenre {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Basic
