@@ -51,4 +51,8 @@ public class MovieFunctions {
     public static void removeActorFromMovie(Long movieId, Long actorId) {
         movieDao.removeActorFromMovie(movieId, actorId);
     }
+
+    public static void removeDirectorFromMovie(Long movieId) {
+        movieDao.removeDirectorFromMovie(movieId);
+    }
 }

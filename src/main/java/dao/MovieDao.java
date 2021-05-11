@@ -106,4 +106,13 @@ public class MovieDao {
         em.getTransaction().commit();
         em.close();
     }
+
+    public void removeDirectorFromMovie(Long movieId) {
+        EntityManager em = emf.createEntityManager();
+        Movie movie = em.find(Movie.class, movieId);
+        em.getTransaction().begin();
+        movie.setDirector(null);
+        em.getTransaction().commit();
+        em.close();
+    }
 }

@@ -61,7 +61,7 @@ public class MovieMenu {
                     removeActorFromMovie();
                     break;
                 case 10:
-
+removeDirectorFromMovie();
                     break;
                 case 11:
 
@@ -76,6 +76,14 @@ public class MovieMenu {
                     System.out.println("Wrong input!");
             }
         }
+    }
+
+    private static void removeDirectorFromMovie() {
+        showAllMovies();
+        System.out.println("Movie id: ");
+        Long movieId = readLong();
+
+        MovieFunctions.removeDirectorFromMovie(movieId);
     }
 
     private static void removeActorFromMovie() {
