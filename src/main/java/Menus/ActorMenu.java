@@ -13,10 +13,10 @@ public class ActorMenu {
             System.out.println("\n--|| Actor menu ||--");
             System.out.println("[1] - Add actor");
             System.out.println("[2] - Change name");
-//        System.out.println("[3] - Change age");
+            System.out.println("[3] - Change age");
 //        System.out.println("[4] - Change gender");
 //        System.out.println("[5] - Delete actor");
-        System.out.println("[6] - Show all actors");
+            System.out.println("[6] - Show all actors");
             System.out.println("[0] - Return to main");
 
             System.out.print("\nMake a choice: ");
@@ -31,7 +31,7 @@ public class ActorMenu {
                     changeActorName();
                     break;
                 case 3:
-
+                    changeActorAge();
                     break;
                 case 4:
 
@@ -49,6 +49,15 @@ public class ActorMenu {
                     System.out.println("Wrong input!");
             }
         }
+    }
+
+    private static void changeActorAge() {
+        showAllActors();
+        System.out.println("Actor id: ");
+        Long actorId = readLong();
+        System.out.println("New actor age: ");
+        int newActorAge = readInt();
+        ActorFunctions.changeActorAge(actorId, newActorAge);
     }
 
     private static void changeActorName() {

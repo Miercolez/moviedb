@@ -16,7 +16,6 @@ public class ActorDao {
         em.persist(actor);
         em.getTransaction().commit();
         em.close();
-
     }
 
     public void showAllActors() {
@@ -31,6 +30,15 @@ public class ActorDao {
         Actor actor = em.find(Actor.class, actorId);
         em.getTransaction().begin();
         actor.setName(newActorName);
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    public void changeActorAge(Long actorId, int newActorAge) {
+        EntityManager em = emf.createEntityManager();
+        Actor actor = em.find(Actor.class, actorId);
+        em.getTransaction().begin();
+        actor.setAge(newActorAge);
         em.getTransaction().commit();
         em.close();
     }

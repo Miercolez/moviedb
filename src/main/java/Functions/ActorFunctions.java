@@ -22,4 +22,8 @@ public class ActorFunctions {
         actorDao.changeActorName(actorId, newActorName);
 
     }
+
+    public static void changeActorAge(Long actorId, int newActorAge) {
+        actorDao.changeActorAge(actorId, newActorAge);
+    }
 }
