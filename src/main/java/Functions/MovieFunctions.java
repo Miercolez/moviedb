@@ -26,4 +26,9 @@ public class MovieFunctions {
     public static void changeMovieTitle(Long id, String title) {
         movieDao.changeMovieTitle(id,title);
     }
+
+    public static void addExistingActorToExistingMovie(Long actorId, Long movieId) {
+        movieDao.addExistingActorToExistingMovie(actorId, movieId);
+
+    }
 }

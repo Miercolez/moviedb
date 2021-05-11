@@ -85,7 +85,7 @@ public class ActorMenu {
         ActorFunctions.changeActorName(actorId, newActorName);
     }
 
-    private static void showAllActors() {
+    public static void showAllActors() {
         ActorFunctions.showAllActors();
     }
 
