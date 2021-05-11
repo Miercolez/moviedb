@@ -7,7 +7,7 @@ public class ActorMenu {
         boolean loop = true;
         while (loop) {
             System.out.println("\n--|| Actor menu ||--");
-//        System.out.println("[1] - Add actor");
+        System.out.println("[1] - Add actor");
 //        System.out.println("[2] - Change name");
 //        System.out.println("[3] - Change age");
 //        System.out.println("[4] - Change gender");
