@@ -1,9 +1,9 @@
-package main;
+package Functions;
 
 import dao.MovieDao;
 import models.Movie;
 
-public class Functions {
+public class MovieFunctions {
 
     static MovieDao movieDao = new MovieDao();
 

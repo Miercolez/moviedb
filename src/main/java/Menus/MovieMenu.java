@@ -1,62 +1,18 @@
-package main;
+package Menus;
+
+import Functions.MovieFunctions;
+import main.Main;
 
 import static main.Main.*;
 import static main.Read.*;
 
-public class Menus {
+public class MovieMenu {
 
     static boolean loopSubMenus = true;
 
-    public static void mainMenu() {
 
 
-        System.out.println("\n--|| Main menu ||--");
-        System.out.println("[1] - Movie");
-//        System.out.println("[2] - Actor");
-//        System.out.println("[3] - Director");
-//        System.out.println("[4] - Rating");
-//        System.out.println("[5] - Genre");
-        System.out.println("[0] - Exit");
-
-        System.out.print("\nMake a choice: ");
-        int choice = sc.nextInt();
-        sc.nextLine();
-
-        switch (choice) {
-            case 1:
-                while (loopSubMenus) {
-                    movieMenu();
-                }
-                break;
-            case 2:
-                while (loopSubMenus) {
-                    actorMenu();
-                }
-                break;
-            case 3:
-                while (loopSubMenus) {
-                    directorMenu();
-                }
-                break;
-            case 4:
-                while (loopSubMenus) {
-                    ratingMenu();
-                }
-                break;
-            case 5:
-                while (loopSubMenus) {
-                    genreMenu();
-                }
-                break;
-            case 0:
-                Main.loopMainMenu = false;
-                break;
-            default:
-                System.out.println("Wrong input!");
-        }
-    }
-
-    private static void movieMenu() {
+    public static void movieMenu() {
         System.out.println("\n--|| Movie menu ||--");
         System.out.println("[1] - Add new movie");
 //        System.out.println("[2] - Add existing actor");
@@ -126,14 +82,14 @@ public class Menus {
     }
 
     private static void showAllMovies() {
-        Functions.showAllMovies();
+        MovieFunctions.showAllMovies();
         System.out.println();
     }
 
     private static void deleteMovie() {
         System.out.println("Movie id: ");
         Long movieId = readLong();
-        Functions.deleteMovie(movieId);
+        MovieFunctions.deleteMovie(movieId);
     }
 
     private static void changeMovieTitle() {
@@ -143,7 +99,7 @@ public class Menus {
         System.out.println("New title: ");
         String newMovieTitle = readLine();
 
-        Functions.changeMovieTitle(movieId,newMovieTitle);
+        MovieFunctions.changeMovieTitle(movieId,newMovieTitle);
     }
 
     private static void addNewMovie() {
@@ -154,7 +110,7 @@ public class Menus {
         System.out.println("Release year: ");
         int releaseYear = readInt();
 
-        Functions.createNewMovie(movieTitle, movieDuration, releaseYear);
+        MovieFunctions.createNewMovie(movieTitle, movieDuration, releaseYear);
     }
 
     private static void actorMenu() {
