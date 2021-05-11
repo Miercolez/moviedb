@@ -95,6 +95,10 @@ public class Actor {
         this.movies = movies;
     }
 
+    public void addMovie(Movie movie){
+        this.movies.add(movie);
+    }
+
     @Override
     public String toString() {
         return "\nid=" + id + ", name=" + name + ", age=" + age + ", gender=" + gender;
