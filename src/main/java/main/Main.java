@@ -3,6 +3,7 @@ package main;
 import java.util.Scanner;
 
 
+import static Menus.ActorMenu.actorMenu;
 import static Menus.MovieMenu.movieMenu;
 import static Menus.RatingMenu.ratingMenu;
 
@@ -46,7 +47,7 @@ public class Main {
                 break;
             case 3:
 
-                    directorMenu();
+//                    directorMenu();
 
                 break;
             case 4:
@@ -56,7 +57,7 @@ public class Main {
                 break;
             case 5:
 
-                    genreMenu();
+//                    genreMenu();
 
                 break;
             case 0:

@@ -6,16 +6,16 @@ import static main.Main.sc;
 import static main.Read.*;
 
 public class ActorMenu {
-    private static void actorMenu() {
+    public static void actorMenu() {
         boolean loop = true;
         while (loop) {
             System.out.println("\n--|| Actor menu ||--");
             System.out.println("[1] - Add actor");
-//        System.out.println("[2] - Change name");
+            System.out.println("[2] - Change name");
 //        System.out.println("[3] - Change age");
 //        System.out.println("[4] - Change gender");
 //        System.out.println("[5] - Delete actor");
-//        System.out.println("[6] - Show all actors");
+        System.out.println("[6] - Show all actors");
             System.out.println("[0] - Return to main");
 
             System.out.print("\nMake a choice: ");
@@ -27,7 +27,7 @@ public class ActorMenu {
                     addNewActor();
                     break;
                 case 2:
-
+                    showAllActors();
                     break;
                 case 3:
 
@@ -39,7 +39,7 @@ public class ActorMenu {
 
                     break;
                 case 6:
-
+                    showAllActors();
                     break;
                 case 0:
                     loop = false;
@@ -48,6 +48,10 @@ public class ActorMenu {
                     System.out.println("Wrong input!");
             }
         }
+    }
+
+    private static void showAllActors() {
+        ActorFunctions.showAllActors();
     }
 
     private static void addNewActor() {
@@ -66,7 +70,7 @@ public class ActorMenu {
         } else if (choice == 2) {
             actorGender = "Woman";
             ActorFunctions.addNewActor(actorName, actorAge, actorGender);
-        }else{
+        } else {
             System.out.println("Wrong input, that gender does not exist");
         }
 

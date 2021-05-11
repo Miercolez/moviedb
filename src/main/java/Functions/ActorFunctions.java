@@ -12,4 +12,8 @@ public class ActorFunctions {
 
         actorDao.addNewActor(actor);
     }
+
+    public static void showAllActors() {
+        actorDao.showAllActors();
+    }
 }
