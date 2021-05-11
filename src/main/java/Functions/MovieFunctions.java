@@ -47,4 +47,8 @@ public class MovieFunctions {
 
         movieDao.updateDirectorOfMovie(newDirectorId, movieId);
     }
+
+    public static void removeActorFromMovie(Long movieId, Long actorId) {
+        movieDao.removeActorFromMovie(movieId, actorId);
+    }
 }

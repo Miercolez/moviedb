@@ -97,4 +97,13 @@ public class MovieDao {
     }
 
 
+    public void removeActorFromMovie(Long movieId, Long actorId) {
+        EntityManager em = emf.createEntityManager();
+        Movie movie = em.find(Movie.class, movieId);
+        Actor actor = em.find(Actor.class, actorId);
+        em.getTransaction().begin();
+        actor.removeMovie(movie);
+        em.getTransaction().commit();
+        em.close();
+    }
 }

@@ -22,8 +22,8 @@ public class MovieMenu {
             System.out.println("[6] - Change actor");
             System.out.println("[7] - Change director");
             System.out.println("[8] - Delete movie");
-//        System.out.println("[9] - Remove actor from movie");
-//        System.out.println("[10] - Remove director from movie");
+            System.out.println("[9] - Remove actor from movie");
+            System.out.println("[10] - Remove director from movie");
 //        System.out.println("[11] - Remove genre from movie");
             System.out.println("[12] - Show all movies");
             System.out.println("[0] - Return to main");
@@ -58,7 +58,7 @@ public class MovieMenu {
                     deleteMovie();
                     break;
                 case 9:
-
+                    removeActorFromMovie();
                     break;
                 case 10:
 
@@ -76,6 +76,17 @@ public class MovieMenu {
                     System.out.println("Wrong input!");
             }
         }
+    }
+
+    private static void removeActorFromMovie() {
+        showAllMovies();
+        System.out.println("Movie id: ");
+        Long movieId = readLong();
+
+        System.out.println("Actor id: ");
+        Long actorId = readLong();
+
+        MovieFunctions.removeActorFromMovie(movieId, actorId);
     }
 
     private static void changeDirector() {
