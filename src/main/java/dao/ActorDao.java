@@ -25,4 +25,13 @@ public class ActorDao {
         actors.forEach(System.out::println);
         em.close();
     }
+
+    public void changeActorName(Long actorId, String newActorName) {
+        EntityManager em = emf.createEntityManager();
+        Actor actor = em.find(Actor.class, actorId);
+        em.getTransaction().begin();
+        actor.setName(newActorName);
+        em.getTransaction().commit();
+        em.close();
+    }
 }

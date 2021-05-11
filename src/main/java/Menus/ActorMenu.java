@@ -1,6 +1,7 @@
 package Menus;
 
 import Functions.ActorFunctions;
+import models.Actor;
 
 import static main.Main.sc;
 import static main.Read.*;
@@ -27,7 +28,7 @@ public class ActorMenu {
                     addNewActor();
                     break;
                 case 2:
-                    showAllActors();
+                    changeActorName();
                     break;
                 case 3:
 
@@ -48,6 +49,15 @@ public class ActorMenu {
                     System.out.println("Wrong input!");
             }
         }
+    }
+
+    private static void changeActorName() {
+        showAllActors();
+        System.out.println("Actor id: ");
+        Long actorId = readLong();
+        System.out.println("New actor name: ");
+        String newActorName = readLine();
+        ActorFunctions.changeActorName(actorId, newActorName);
     }
 
     private static void showAllActors() {

@@ -16,4 +16,10 @@ public class ActorFunctions {
     public static void showAllActors() {
         actorDao.showAllActors();
     }
+
+    public static void changeActorName(Long actorId, String newActorName) {
+
+        actorDao.changeActorName(actorId, newActorName);
+
+    }
 }
