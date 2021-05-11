@@ -3,7 +3,6 @@
  */
 package models;
 
-import java.time.LocalDateTime;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -34,16 +33,6 @@ public class MovieRating {
 
     @Basic
     private int rating;
-    
-    private LocalDateTime created;
-
-    public LocalDateTime getCreated() {
-        return created;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
 
     @ManyToOne(targetEntity = Movie.class, cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     private Movie movie;
@@ -51,13 +40,9 @@ public class MovieRating {
     public MovieRating() {
     }
 
-    public MovieRating(int rating, LocalDateTime created) {
+    public MovieRating(int rating) {
         this.rating = rating;
-        this.created = created;
     }
-
-
-    
 
     public Long getId() {
         return this.id;
@@ -85,7 +70,7 @@ public class MovieRating {
 
     @Override
     public String toString() {
-        return "rating=" + rating + "created=" + created;
+        return "rating=" + rating;
     }
 
 
