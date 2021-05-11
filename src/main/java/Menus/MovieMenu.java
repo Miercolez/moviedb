@@ -1,12 +1,10 @@
 package Menus;
 
 import Functions.MovieFunctions;
-import models.Movie;
 
 import static Menus.ActorMenu.showAllActors;
 import static Menus.DirectorMenu.showAllDirectors;
-import static main.Main.*;
-import static main.Read.*;
+import static utility.Read.*;
 
 public class MovieMenu {
 
@@ -29,8 +27,7 @@ public class MovieMenu {
             System.out.println("[0] - Return to main");
 
             System.out.print("\nMake a choice: ");
-            int choice = sc.nextInt();
-            sc.nextLine();
+            int choice = readInt();
 
             switch (choice) {
                 case 1:
@@ -61,7 +58,7 @@ public class MovieMenu {
                     removeActorFromMovie();
                     break;
                 case 10:
-removeDirectorFromMovie();
+                    removeDirectorFromMovie();
                     break;
                 case 11:
 

@@ -3,9 +3,8 @@ package Menus;
 import Functions.RatingFunctions;
 
 import static Functions.MovieFunctions.showAllMovies;
-import static main.Main.sc;
-import static main.Read.readInt;
-import static main.Read.readLong;
+import static utility.Read.readInt;
+import static utility.Read.readLong;
 
 public class RatingMenu {
 
@@ -23,8 +22,7 @@ public class RatingMenu {
 //        System.out.println("[0] - Return to main");
 
             System.out.print("\nMake a choice: ");
-            int choice = sc.nextInt();
-            sc.nextLine();
+            int choice = readInt();
 
             switch (choice) {
                 case 1:

@@ -1,10 +1,8 @@
 package Menus;
 
 import Functions.DirectorFunctions;
-import models.Director;
 
-import static main.Main.sc;
-import static main.Read.*;
+import static utility.Read.*;
 import static utility.GenderChoice.chooseGender;
 
 public class DirectorMenu {
@@ -24,8 +22,7 @@ public class DirectorMenu {
             System.out.println("[0] - Return to main");
 
             System.out.print("\nMake a choice: ");
-            int choice = sc.nextInt();
-            sc.nextLine();
+            int choice = readInt();
 
             switch (choice) {
                 case 1:
