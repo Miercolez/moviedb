@@ -84,4 +84,16 @@ public class MovieDao {
         em.getTransaction().commit();
         em.close();
     }
+
+    public void changeActor(Long movieId, Long oldActorId, Long newActorId) {
+        EntityManager em = emf.createEntityManager();
+        Movie movie = em.find(Movie.class, movieId);
+        Actor oldActor = em.find(Actor.class, oldActorId);
+        Actor newActor = em.find(Actor.class, newActorId);
+        em.getTransaction().begin();
+        oldActor.removeMovie(movie);
+        newActor.addMovie(movie);
+        em.getTransaction().commit();
+        em.close();
+    }
 }

@@ -37,4 +37,9 @@ public class MovieFunctions {
         movieDao.addExistingDirectorToExistingMovie(directorId, movieId);
 
     }
+
+    public static void changeActor(Long movieId, Long oldActorId, Long newActorId) {
+        movieDao.changeActor(movieId, oldActorId, newActorId);
+
+    }
 }

@@ -19,7 +19,7 @@ public class MovieMenu {
         System.out.println("[3] - Add existing director to existing movie");
 //        System.out.println("[4] - Add genre");
             System.out.println("[5] - Change movie title");
-//        System.out.println("[6] - Change actor");
+        System.out.println("[6] - Change actor");
 //        System.out.println("[7] - Change director");
             System.out.println("[8] - Delete movie");
 //        System.out.println("[9] - Remove actor from movie");
@@ -46,19 +46,15 @@ public class MovieMenu {
 
                     break;
                 case 5:
-                    showAllMovies();
-
                     changeMovieTitle();
                     break;
                 case 6:
-
+                    changeActor();
                     break;
                 case 7:
 
                     break;
                 case 8:
-                    showAllMovies();
-
                     deleteMovie();
                     break;
                 case 9:
@@ -80,6 +76,19 @@ public class MovieMenu {
                     System.out.println("Wrong input!");
             }
         }
+    }
+
+    private static void changeActor() {
+        showAllMovies();
+        System.out.println("Movie id: ");
+        Long movieId = readLong();
+        showAllActors();
+        System.out.println("Actor id: ");
+        Long oldActorId = readLong();
+        System.out.println("New actor id: ");
+        Long newActorId = readLong();
+        MovieFunctions.changeActor(movieId, oldActorId, newActorId);
+
     }
 
     private static void addExistingDirectorToExistingMovie() {
@@ -111,12 +120,14 @@ public class MovieMenu {
     }
 
     private static void deleteMovie() {
+        showAllMovies();
         System.out.println("Movie id: ");
         Long movieId = readLong();
         MovieFunctions.deleteMovie(movieId);
     }
 
     private static void changeMovieTitle() {
+        showAllMovies();
         System.out.println("Movie id: ");
         Long movieId = readLong();
 
