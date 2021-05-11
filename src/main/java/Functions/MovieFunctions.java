@@ -34,12 +34,17 @@ public class MovieFunctions {
 
     public static void addExistingDirectorToExistingMovie(Long directorId, Long movieId) {
 
-        movieDao.addExistingDirectorToExistingMovie(directorId, movieId);
+        movieDao.updateDirectorOfMovie(directorId, movieId);
 
     }
 
     public static void changeActor(Long movieId, Long oldActorId, Long newActorId) {
         movieDao.changeActor(movieId, oldActorId, newActorId);
 
+    }
+
+    public static void changeDirector(Long movieId, Long newDirectorId) {
+
+        movieDao.updateDirectorOfMovie(newDirectorId, movieId);
     }
 }

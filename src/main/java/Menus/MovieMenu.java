@@ -15,12 +15,12 @@ public class MovieMenu {
         while (loop) {
             System.out.println("\n--|| Movie menu ||--");
             System.out.println("[1] - Add new movie");
-        System.out.println("[2] - Add existing actor to existing movie");
-        System.out.println("[3] - Add existing director to existing movie");
+            System.out.println("[2] - Add existing actor to existing movie");
+            System.out.println("[3] - Add existing director to existing movie");
 //        System.out.println("[4] - Add genre");
             System.out.println("[5] - Change movie title");
-        System.out.println("[6] - Change actor");
-//        System.out.println("[7] - Change director");
+            System.out.println("[6] - Change actor");
+            System.out.println("[7] - Change director");
             System.out.println("[8] - Delete movie");
 //        System.out.println("[9] - Remove actor from movie");
 //        System.out.println("[10] - Remove director from movie");
@@ -52,7 +52,7 @@ public class MovieMenu {
                     changeActor();
                     break;
                 case 7:
-
+                    changeDirector();
                     break;
                 case 8:
                     deleteMovie();
@@ -76,6 +76,16 @@ public class MovieMenu {
                     System.out.println("Wrong input!");
             }
         }
+    }
+
+    private static void changeDirector() {
+        showAllMovies();
+        System.out.println("Movie id: ");
+        Long movieId = readLong();
+        showAllDirectors();
+        System.out.println("New director id: ");
+        Long newDirectorId = readLong();
+        MovieFunctions.changeDirector(movieId, newDirectorId);
     }
 
     private static void changeActor() {

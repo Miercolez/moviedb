@@ -70,7 +70,7 @@ public class MovieDao {
         em.close();
     }
 
-    public void addExistingDirectorToExistingMovie(Long directorId, Long movieId) {
+    public void updateDirectorOfMovie(Long directorId, Long movieId) {
         EntityManager em = emf.createEntityManager();
 
         Director director = em.find(Director.class, directorId);
@@ -78,7 +78,6 @@ public class MovieDao {
 
         em.getTransaction().begin();
 
-//        director.addMovie(movie);
         movie.setDirector(director);
 
         em.getTransaction().commit();
@@ -96,4 +95,6 @@ public class MovieDao {
         em.getTransaction().commit();
         em.close();
     }
+
+
 }
