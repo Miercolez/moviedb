@@ -42,4 +42,21 @@ public class ActorDao {
         em.getTransaction().commit();
         em.close();
     }
+
+    public void changeActorGender(Long actorId, String actorGender) {
+        EntityManager em = emf.createEntityManager();
+        Actor actor = em.find(Actor.class, actorId);
+        em.getTransaction().begin();
+        actor.setGender(actorGender);
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    public void deleteActor(Long actorId) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.remove(em.find(Actor.class, actorId));
+        em.getTransaction().commit();
+        em.close();
+    }
 }

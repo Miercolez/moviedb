@@ -26,4 +26,12 @@ public class ActorFunctions {
     public static void changeActorAge(Long actorId, int newActorAge) {
         actorDao.changeActorAge(actorId, newActorAge);
     }
+
+    public static void changeActorGender(Long actorId, String actorGender) {
+        actorDao.changeActorGender(actorId, actorGender);
+    }
+
+    public static void deleteActor(Long actorId) {
+        actorDao.deleteActor(actorId);
+    }
 }
