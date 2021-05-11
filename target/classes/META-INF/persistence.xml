@@ -10,6 +10,7 @@
         <class>models.Movie</class>
         <class>models.MovieGenre</class>
         <class>models.MovieRating</class>
+        <shared-cache-mode>NONE</shared-cache-mode>
         <properties>
             <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/moviedb"/>
             <property name="eclipselink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
