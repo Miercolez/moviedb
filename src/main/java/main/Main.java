@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 
 import static Menus.MovieMenu.movieMenu;
+import static Menus.RatingMenu.ratingMenu;
 
 public class Main {
     static boolean loopMainMenu = true;
@@ -22,10 +23,10 @@ public class Main {
 
         System.out.println("\n--|| Main menu ||--");
         System.out.println("[1] - Movie");
-//        System.out.println("[2] - Actor");
-//        System.out.println("[3] - Director");
-//        System.out.println("[4] - Rating");
-//        System.out.println("[5] - Genre");
+        System.out.println("[2] - Actor");
+        System.out.println("[3] - Director");
+        System.out.println("[4] - Rating");
+        System.out.println("[5] - Genre");
         System.out.println("[0] - Exit");
 
         System.out.print("\nMake a choice: ");
@@ -35,27 +36,27 @@ public class Main {
         switch (choice) {
             case 1:
 
-                    movieMenu();
+                movieMenu();
 
                 break;
             case 2:
 
-//                    actorMenu();
+                actorMenu();
 
                 break;
             case 3:
 
-//                    directorMenu();
+                directorMenu();
 
                 break;
             case 4:
 
-//                    ratingMenu();
+                ratingMenu();
 
                 break;
             case 5:
 
-//                    genreMenu();
+                genreMenu();
 
                 break;
             case 0:
