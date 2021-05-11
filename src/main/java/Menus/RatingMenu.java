@@ -16,11 +16,11 @@ public class RatingMenu {
         while (loop) {
 
             System.out.println("\n--|| Rating menu ||--");
-        System.out.println("[1] - Add rating");
-//        System.out.println("[2] - Change rating");
-//        System.out.println("[3] - Delete rating");
-//        System.out.println("[4] - Show all ratings");
-//        System.out.println("[0] - Return to main");
+            System.out.println("[1] - Add rating");
+            System.out.println("[2] - Change rating");
+            System.out.println("[3] - Delete rating");
+            System.out.println("[4] - Show all ratings");
+            System.out.println("[0] - Return to main");
 
             System.out.print("\nMake a choice: ");
             int choice = sc.nextInt();
@@ -28,16 +28,16 @@ public class RatingMenu {
 
             switch (choice) {
                 case 1:
-                addRating();
+                    addRating();
                     break;
                 case 2:
-
+                    changeRating();
                     break;
                 case 3:
-
+                    deleteRating();
                     break;
                 case 4:
-
+                    showAllRatings();
                     break;
                 case 0:
                     loop = false;
@@ -46,6 +46,18 @@ public class RatingMenu {
                     System.out.println("Wrong input!");
             }
         }
+    }
+
+    private static void changeRating() {
+
+        showAllRatings();
+        System.out.print("Change Rating Id: ");
+        Long ratingId = readLong();
+
+        System.out.print("New Rating: ");
+        int newRating = readInt();
+
+        RatingFunctions.changeRating(ratingId, newRating);
     }
 
     private static void addRating() {
@@ -64,6 +76,21 @@ public class RatingMenu {
             RatingFunctions.addRating(movieId, movieRating);
         }
 
+    }
+
+    private static void deleteRating() {
+
+        showAllRatings();
+        System.out.print("Rating Id: ");
+        Long ratingId = readLong();
+
+        RatingFunctions.deleteRating(ratingId);
+
+    }
+
+    private static void showAllRatings() {
+
+        RatingFunctions.showAllRatings();
     }
 
 }
