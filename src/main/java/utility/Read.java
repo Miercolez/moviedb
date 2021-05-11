@@ -1,7 +1,9 @@
-package main;
-import static main.Main.*;
+package utility;
+import java.util.Scanner;
 
 public class Read {
+
+    static Scanner sc = new Scanner(System.in);
 
     public static int readInt(){
         int temp = sc.nextInt();

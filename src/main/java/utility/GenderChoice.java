@@ -1,6 +1,6 @@
 package utility;
 
-import static main.Main.sc;
+import static utility.Read.*;
 
 public class GenderChoice {
 
@@ -12,8 +12,7 @@ public class GenderChoice {
             System.out.println("Gender: ");
             System.out.println("[1] - Female");
             System.out.println("[2] - Male");
-            int choice = sc.nextInt();
-            sc.nextLine();
+            int choice = readInt();
 
             switch (choice) {
                 case 1:

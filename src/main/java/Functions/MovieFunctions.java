@@ -31,4 +31,28 @@ public class MovieFunctions {
         movieDao.addExistingActorToExistingMovie(actorId, movieId);
 
     }
+
+    public static void addExistingDirectorToExistingMovie(Long directorId, Long movieId) {
+
+        movieDao.updateDirectorOfMovie(directorId, movieId);
+
+    }
+
+    public static void changeActor(Long movieId, Long oldActorId, Long newActorId) {
+        movieDao.changeActor(movieId, oldActorId, newActorId);
+
+    }
+
+    public static void changeDirector(Long movieId, Long newDirectorId) {
+
+        movieDao.updateDirectorOfMovie(newDirectorId, movieId);
+    }
+
+    public static void removeActorFromMovie(Long movieId, Long actorId) {
+        movieDao.removeActorFromMovie(movieId, actorId);
+    }
+
+    public static void removeDirectorFromMovie(Long movieId) {
+        movieDao.removeDirectorFromMovie(movieId);
+    }
 }

@@ -2,8 +2,7 @@ package Menus;
 
 import Functions.MovieGenreFunktions;
 
-import static main.Main.sc;
-import static main.Read.*;
+import static utility.Read.*;
 
 public class MovieGenreMenu {
     public static void genreMenu() {
@@ -19,8 +18,7 @@ public class MovieGenreMenu {
             System.out.println("[0] - Return to main");
 
             System.out.print("\nMake a choice: ");
-            int choice = sc.nextInt();
-            sc.nextLine();
+            int choice = readInt();
 
             switch (choice) {
                 case 1:

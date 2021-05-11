@@ -1,6 +1,5 @@
 package main;
 
-import java.util.Scanner;
 
 
 import static Menus.ActorMenu.actorMenu;
@@ -8,10 +7,11 @@ import static Menus.DirectorMenu.directorMenu;
 import static Menus.MovieGenreMenu.genreMenu;
 import static Menus.MovieMenu.movieMenu;
 import static Menus.RatingMenu.ratingMenu;
+import static utility.Read.*;
 
 public class Main {
     static boolean loopMainMenu = true;
-    public static Scanner sc = new Scanner(System.in);
+
 
     public static void main(String[] args) {
 
@@ -33,8 +33,7 @@ public class Main {
         System.out.println("[0] - Exit");
 
         System.out.print("\nMake a choice: ");
-        int choice = sc.nextInt();
-        sc.nextLine();
+        int choice = readInt();
 
         switch (choice) {
             case 1:

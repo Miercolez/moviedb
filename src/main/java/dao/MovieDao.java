@@ -1,6 +1,7 @@
 package dao;
 
 import models.Actor;
+import models.Director;
 import models.Movie;
 
 import javax.persistence.EntityManager;
@@ -65,6 +66,52 @@ public class MovieDao {
         Actor actor = em.find(Actor.class, actorId);
         em.getTransaction().begin();
         actor.addMovie(movie);
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    public void updateDirectorOfMovie(Long directorId, Long movieId) {
+        EntityManager em = emf.createEntityManager();
+
+        Director director = em.find(Director.class, directorId);
+        Movie movie = em.find(Movie.class, movieId);
+
+        em.getTransaction().begin();
+
+        movie.setDirector(director);
+
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    public void changeActor(Long movieId, Long oldActorId, Long newActorId) {
+        EntityManager em = emf.createEntityManager();
+        Movie movie = em.find(Movie.class, movieId);
+        Actor oldActor = em.find(Actor.class, oldActorId);
+        Actor newActor = em.find(Actor.class, newActorId);
+        em.getTransaction().begin();
+        oldActor.removeMovie(movie);
+        newActor.addMovie(movie);
+        em.getTransaction().commit();
+        em.close();
+    }
+
+
+    public void removeActorFromMovie(Long movieId, Long actorId) {
+        EntityManager em = emf.createEntityManager();
+        Movie movie = em.find(Movie.class, movieId);
+        Actor actor = em.find(Actor.class, actorId);
+        em.getTransaction().begin();
+        actor.removeMovie(movie);
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    public void removeDirectorFromMovie(Long movieId) {
+        EntityManager em = emf.createEntityManager();
+        Movie movie = em.find(Movie.class, movieId);
+        em.getTransaction().begin();
+        movie.setDirector(null);
         em.getTransaction().commit();
         em.close();
     }

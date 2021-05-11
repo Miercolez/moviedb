@@ -98,6 +98,9 @@ public class Actor {
     public void addMovie(Movie movie){
         this.movies.add(movie);
     }
+    public void removeMovie(Movie movie){
+        this.movies.remove(movie);
+    }
 
     @Override
     public String toString() {
