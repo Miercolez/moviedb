@@ -8,7 +8,7 @@ import static utility.GenderChoice.chooseGender;
 
 public class DirectorMenu {
 
-    private static void directorMenu() {
+    public static void directorMenu() {
 
         boolean loop = true;
 
