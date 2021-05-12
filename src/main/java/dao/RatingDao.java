@@ -6,6 +6,7 @@ import models.MovieRating;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class RatingDao {
 
@@ -30,10 +31,14 @@ public class RatingDao {
 
         EntityManager em = emf.createEntityManager();
 
-        em.createNamedQuery("MovieRating.findAll", MovieRating.class).getResultList().forEach(r -> System.out.println("\nId = " + r.getId() + "\nRating = " + r.getRating() + "\nMovie = " + r.getMovie().getTitle()));
+        List<MovieRating> ratings = em.createNamedQuery("MovieRating.findAll", MovieRating.class).getResultList();
+        if (ratings != null) {
+            ratings.forEach(r -> System.out.println("\nId = " + r.getId() + "\nRating = " + r.getRating() + "\nMovie = " + r.getMovie().getTitle()));
+        } else {
+            System.out.println("There is no ratings to be shown.");
+        }
 
         em.close();
-
     }
 
     public void deleteRating(Long ratingId) {
