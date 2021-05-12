@@ -1,12 +1,14 @@
 package main;
 
 
+import Menus.StatisticMenu;
 
 import static Menus.ActorMenu.actorMenu;
 import static Menus.DirectorMenu.directorMenu;
 import static Menus.MovieGenreMenu.genreMenu;
 import static Menus.MovieMenu.movieMenu;
 import static Menus.RatingMenu.ratingMenu;
+import static Menus.StatisticMenu.statisticMenu;
 import static utility.Read.*;
 
 public class Main {
@@ -30,6 +32,7 @@ public class Main {
         System.out.println("[3] - Director");
         System.out.println("[4] - Rating");
         System.out.println("[5] - Genre");
+        System.out.println("[6] - Statistics");
         System.out.println("[0] - Exit");
 
         System.out.print("\nMake a choice: ");
@@ -38,12 +41,12 @@ public class Main {
         switch (choice) {
             case 1:
 
-                    movieMenu();
+                movieMenu();
 
                 break;
             case 2:
 
-                    actorMenu();
+                actorMenu();
 
                 break;
             case 3:
@@ -53,12 +56,18 @@ public class Main {
                 break;
             case 4:
 
-                    ratingMenu();
+                ratingMenu();
 
                 break;
             case 5:
 
                 genreMenu();
+
+                break;
+
+            case 6:
+
+                statisticMenu();
 
                 break;
             case 0:
