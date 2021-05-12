@@ -48,6 +48,11 @@ public class MovieGenre {
         return genre == that.genre;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(genre);
+    }
+
     public Long getId() {
         return this.id;
     }
@@ -72,11 +77,14 @@ public class MovieGenre {
         this.movies = movies;
     }
 
+    public void addMovie(Movie movie) {
+        this.movies.add(movie);
+    }
+
     @Override
     public String toString() {
         return "MovieGenre{" + "id=" + id + ", genre=" + genre + '}';
     }
 
-        
 
 }

@@ -3,11 +3,12 @@ package dao;
 import models.Actor;
 import models.Director;
 import models.Movie;
+import models.MovieGenre;
+import utility.Genres;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import java.util.List;
+import java.util.Optional;
 
 public class MovieDao {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
@@ -147,5 +148,33 @@ public class MovieDao {
 
         em.getTransaction().commit();
         em.close();
+    }
+
+    public void addGenreToMovie(Long movieId, Genres genre) {
+        EntityManager em = emf.createEntityManager();
+        Movie movie = em.find(Movie.class, movieId);
+        List<MovieGenre> genres = em.createNamedQuery("MovieGenre.findAll").getResultList();
+
+        MovieGenre genreDB = genres.stream()
+                .filter(g -> g.getGenre().equals(genre))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+
+        System.out.println("----" + genreDB);
+
+        em.getTransaction().begin();
+        movie.addMoviewGenres(genreDB);
+        try {
+
+            em.merge(movie);
+            em.merge(genreDB);
+        } catch (
+                NullPointerException n) {
+            System.out.println("One of the inputted objects does not exist in the database");
+        }
+
+        em.getTransaction().commit();
+        em.close();
+
     }
 }

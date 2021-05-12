@@ -147,6 +147,11 @@ public class Movie {
         this.movieGenres = movieGenres;
     }
 
+    public void addMoviewGenres(MovieGenre movieGenre) {
+        this.movieGenres.add(movieGenre);
+        movieGenre.addMovie(this);
+    }
+
     public double averageMovieRating() {
         int ratings = 0;
 
