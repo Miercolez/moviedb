@@ -21,7 +21,12 @@ public class ActorDao {
     public void showAllActors() {
         EntityManager em = emf.createEntityManager();
         List<Actor> actors = em.createNamedQuery("Actor.findAll", Actor.class).getResultList();
-        actors.forEach(System.out::println);
+        if (actors != null) {
+            actors.forEach(System.out::println);
+        } else {
+            System.out.println("There is no actors to be shown.");
+        }
+
         em.close();
     }
 
@@ -29,7 +34,11 @@ public class ActorDao {
         EntityManager em = emf.createEntityManager();
         Actor actor = em.find(Actor.class, actorId);
         em.getTransaction().begin();
-        actor.setName(newActorName);
+        try {
+            actor.setName(newActorName);
+        }catch (NullPointerException n){
+            System.out.println("The inputted object does not exist in the database.");
+        }
         em.getTransaction().commit();
         em.close();
     }
@@ -38,7 +47,11 @@ public class ActorDao {
         EntityManager em = emf.createEntityManager();
         Actor actor = em.find(Actor.class, actorId);
         em.getTransaction().begin();
-        actor.setAge(newActorAge);
+        try {
+            actor.setAge(newActorAge);
+        }catch (NullPointerException n){
+            System.out.println("The inputted object does not exist in the database.");
+        }
         em.getTransaction().commit();
         em.close();
     }
@@ -47,7 +60,11 @@ public class ActorDao {
         EntityManager em = emf.createEntityManager();
         Actor actor = em.find(Actor.class, actorId);
         em.getTransaction().begin();
-        actor.setGender(actorGender);
+        try {
+            actor.setGender(actorGender);
+        }catch (NullPointerException n){
+            System.out.println("The inputted object does not exist in the database.");
+        }
         em.getTransaction().commit();
         em.close();
     }
@@ -55,7 +72,12 @@ public class ActorDao {
     public void deleteActor(Long actorId) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        em.remove(em.find(Actor.class, actorId));
+        try {
+            em.remove(em.find(Actor.class, actorId));
+        }catch (IllegalArgumentException i){
+            System.out.println("The inputted object does not exist in the database.");
+            return;
+        }
         em.getTransaction().commit();
         em.close();
     }

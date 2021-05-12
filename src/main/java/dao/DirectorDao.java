@@ -5,6 +5,7 @@ import models.Director;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class DirectorDao {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
@@ -24,10 +25,14 @@ public class DirectorDao {
 
         Director director = em.find(Director.class, directorId);
 
-        director.setName(newDirectorName);
-
         em.getTransaction().begin();
-        em.merge(director);
+
+        try {
+            director.setName(newDirectorName);
+        } catch (NullPointerException n) {
+            System.out.println("The inputted object does not exist in the database.");
+        }
+
         em.getTransaction().commit();
 
         em.close();
@@ -38,10 +43,13 @@ public class DirectorDao {
 
         Director director = em.find(Director.class, directorId);
 
-        director.setAge(newDirectorAge);
 
         em.getTransaction().begin();
-        em.merge(director);
+        try {
+            director.setAge(newDirectorAge);
+        } catch (NullPointerException n) {
+            System.out.println("The inputted object does not exist in the database.");
+        }
         em.getTransaction().commit();
 
         em.close();
@@ -50,8 +58,13 @@ public class DirectorDao {
     public void showAllDirectors() {
         EntityManager em = emf.createEntityManager();
 
-        em.createNamedQuery("Director.findAll", Director.class).getResultList().forEach(System.out::println);
 
+        List<Director> directors = em.createNamedQuery("Director.findAll", Director.class).getResultList();
+        if (directors != null) {
+            directors.forEach(System.out::println);
+        } else {
+            System.out.println("There is no directors to be shown.");
+        }
         em.close();
     }
 
@@ -60,10 +73,13 @@ public class DirectorDao {
 
         Director director = em.find(Director.class, directorId);
 
-        director.setGender(directorGender);
-
         em.getTransaction().begin();
-        em.merge(director);
+
+        try {
+            director.setGender(directorGender);
+        } catch (NullPointerException n) {
+            System.out.println("The inputted object does not exist in the database.");
+        }
         em.getTransaction().commit();
 
         em.close();
@@ -72,10 +88,17 @@ public class DirectorDao {
     public void deleteDirector(Long directorId) {
         EntityManager em = emf.createEntityManager();
 
-        Director director = em.find(Director.class, directorId);
-
         em.getTransaction().begin();
-        em.remove(director);
+
+
+        try {
+
+            em.remove(em.find(Director.class, directorId));
+
+        } catch (IllegalArgumentException i) {
+            System.out.println("The inputted object does not exist in the database.");
+            return;
+        }
         em.getTransaction().commit();
 
         em.close();

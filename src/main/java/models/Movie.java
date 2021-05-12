@@ -3,6 +3,8 @@
  */
 package models;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -147,19 +149,16 @@ public class Movie {
         this.movieGenres = movieGenres;
     }
 
-    public void addMoviewGenres(MovieGenre movieGenre) {
-        this.movieGenres.add(movieGenre);
-        movieGenre.addMovie(this);
-    }
-
-    public double averageMovieRating() {
+    public String averageMovieRating() {
         int ratings = 0;
+
+        DecimalFormat df = new DecimalFormat("###.#");
 
         for (MovieRating movieRating : movieRatings) {
             ratings += movieRating.getRating();
         }
 
-        return (double) ratings / (double) movieRatings.size();
+        return df.format(((double) ratings / (double) movieRatings.size()));
     }
     
     @Override
