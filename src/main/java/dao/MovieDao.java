@@ -1,5 +1,6 @@
 package dao;
 
+import Functions.MovieFunctions;
 import models.Actor;
 import models.Director;
 import models.Movie;
@@ -176,5 +177,23 @@ public class MovieDao {
         em.getTransaction().commit();
         em.close();
 
+    }
+
+    public List<MovieGenre> showGenreForMovie(Long movieId) {
+        EntityManager em = emf.createEntityManager();
+        Movie movie = em.find(Movie.class, movieId);
+        List<MovieGenre> genres = movie.getMovieGenres();
+        em.close();
+        return genres;
+    }
+
+    public void removeGenreFromMovie(MovieGenre genre, Long movieId) {
+        EntityManager em = emf.createEntityManager();
+        Movie movie = em.find(Movie.class, movieId);
+
+        em.getTransaction().begin();
+        //movie.removeGenre(genre);
+        em.getTransaction().commit();
+        em.close();
     }
 }
