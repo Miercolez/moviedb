@@ -77,13 +77,13 @@ public class StatisticDao {
         try {
             System.out.println("\nThe movie with lowest average rating is:");
             System.out.print(movies.stream()
-                    .filter(m -> !m.equals("Still no rating"))
+                    .filter(m -> !m.averageMovieRating().equals("Still no rating"))
                     .min(Comparator.comparing(Movie::averageMovieRating))
                     .get()
                     .getTitle());
 
             System.out.println(" with rating of " + movies.stream()
-                    .filter(m -> !m.equals("Still no rating"))
+                    .filter(m -> !m.averageMovieRating().equals("Still no rating"))
                     .map(m -> m.averageMovieRating())
                     .min(String::compareTo)
                     .get() + ".");
@@ -105,12 +105,12 @@ public class StatisticDao {
             System.out.println("\nThe movie with highest average rating is:");
 
             System.out.print(movies.stream()
-                    .filter(m -> !m.equals("Still no rating"))
+                    .filter(m -> !m.averageMovieRating().equals("Still no rating"))
                     .max(Comparator.comparing(Movie::averageMovieRating))
                     .get().getTitle());
 
             System.out.println(" with rating of " + movies.stream()
-                    .filter(m -> !m.equals("Still no rating"))
+                    .filter(m -> !m.averageMovieRating().equals("Still no rating"))
                     .map(m -> m.averageMovieRating())
                     .max(String::compareTo)
                     .get() + ".");
