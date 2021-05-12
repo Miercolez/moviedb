@@ -192,8 +192,9 @@ public class MovieDao {
         Movie movie = em.find(Movie.class, movieId);
 
         em.getTransaction().begin();
-        //movie.removeGenre(genre);
+        movie.removeMovieGenre(em.merge(genre));
         em.getTransaction().commit();
+
         em.close();
     }
 }

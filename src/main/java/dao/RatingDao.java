@@ -32,7 +32,7 @@ public class RatingDao {
         EntityManager em = emf.createEntityManager();
 
         List<MovieRating> ratings = em.createNamedQuery("MovieRating.findAll", MovieRating.class).getResultList();
-        if (ratings != null) {
+        if (ratings.size() != 0) {
             ratings.forEach(r -> System.out.println("\nId = " + r.getId() + "\nRating = " + r.getRating() + "\nMovie = " + r.getMovie().getTitle()));
         } else {
             System.out.println("There is no ratings to be shown.");

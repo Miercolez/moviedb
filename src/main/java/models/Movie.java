@@ -156,7 +156,7 @@ public class Movie {
 
     public void removeMovieGenre(MovieGenre genre) {
         this.movieGenres.remove(genre);
-
+        genre.removeMovie(this);
     }
 
     public String averageMovieRating() {

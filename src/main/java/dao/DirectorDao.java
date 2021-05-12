@@ -60,7 +60,7 @@ public class DirectorDao {
 
 
         List<Director> directors = em.createNamedQuery("Director.findAll", Director.class).getResultList();
-        if (directors != null) {
+        if (directors.size() != 0) {
             directors.forEach(System.out::println);
         } else {
             System.out.println("There is no directors to be shown.");

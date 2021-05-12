@@ -3,7 +3,6 @@ package Menus;
 import Functions.MovieFunctions;
 import models.MovieGenre;
 import utility.Genres;
-import utility.MenuMaker;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,7 +10,6 @@ import java.util.stream.Collectors;
 import static Menus.ActorMenu.showAllActors;
 import static Menus.DirectorMenu.showAllDirectors;
 import static utility.Read.*;
-import static Menus.ChooseGenreMenu.*;
 
 public class MovieMenu {
 
@@ -87,19 +85,23 @@ public class MovieMenu {
         System.out.println("Movie id: ");
         Long movieId = readLong();
         List<MovieGenre> genres = MovieFunctions.showGenreForMovie(movieId);
-        List<String> genresString = genres.stream()
-                .map(g -> g.getGenre().getLable())
-                .collect(Collectors.toList());
-        int index = MenuMaker.menuMaker(genresString) - 1;
-        MovieGenre movieGenre = genres.get(index);
-        MovieFunctions.removeGenreFromMovie(movieGenre, movieId);
+        if (genres.size() != 0) {
+            List<String> genresString = genres.stream()
+                    .map(g -> g.getGenre().getLable())
+                    .collect(Collectors.toList());
+            int index = chooseFromGenreList(genresString) - 1;
+            MovieGenre movieGenre = genres.get(index);
+            MovieFunctions.removeGenreFromMovie(movieGenre, movieId);
+        } else {
+            System.out.println("No genres to remove");
+        }
     }
 
     private static void addGenreToMovie() {
         showAllMovies();
         System.out.println("Movie id: ");
         Long movieId = readLong();
-        Genres genre = ChooseGenreMenu();
+        Genres genre = readGenre();
 
         MovieFunctions.addGenreToMovie(movieId, genre);
     }

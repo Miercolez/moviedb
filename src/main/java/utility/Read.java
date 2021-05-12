@@ -1,7 +1,7 @@
 package utility;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Read {
 
@@ -20,7 +20,9 @@ public class Read {
 
                 System.out.println("Wrong input, please try again.");
 
-            }finally {
+                System.out.print("\nMake a choice: ");
+
+            } finally {
                 sc.nextLine();
             }
         }
@@ -40,7 +42,9 @@ public class Read {
 
                 System.out.println("Wrong input, please try again.");
 
-            }finally {
+                System.out.print("\nMake a choice: ");
+
+            } finally {
                 sc.nextLine();
             }
         }
@@ -60,7 +64,9 @@ public class Read {
 
                 System.out.println("Wrong input, please try again.");
 
-            }finally {
+                System.out.print("\nMake a choice: ");
+
+            } finally {
                 sc.nextLine();
             }
         }
@@ -69,5 +75,35 @@ public class Read {
 
     public static String readLine() {
         return sc.nextLine();
+    }
+
+    public static Genres readGenre() {
+        List<Genres> genres = Arrays.asList(Genres.values());
+        List<String> genresString = genres.stream()
+                .map(g -> g.getLable())
+                .collect(Collectors.toList());
+        int chosenGenre = chooseFromGenreList(genresString) - 1;
+
+        return genres.get(chosenGenre);
+    }
+
+    public static int chooseFromGenreList(List<String> input) {
+        for (int i = 0; i < input.size(); i++) {
+            System.out.println("[" + (i + 1) + "] - " + input.get(i));
+        }
+
+        while (true) {
+            System.out.print("Make your choice: ");
+            int choice = Read.readInt();
+            System.out.println();
+            if (0 < choice && choice <= input.size()) {
+
+                return choice;
+
+            } else {
+                System.out.println("Bad entry");
+                System.out.println();
+            }
+        }
     }
 }
