@@ -71,6 +71,7 @@ public class ActorDao {
             em.remove(em.find(Actor.class, actorId));
         }catch (IllegalArgumentException i){
             System.out.println("The inputted object does not exist in the database.");
+            return;
         }
         em.getTransaction().commit();
         em.close();

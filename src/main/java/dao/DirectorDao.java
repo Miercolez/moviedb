@@ -24,10 +24,14 @@ public class DirectorDao {
 
         Director director = em.find(Director.class, directorId);
 
-        director.setName(newDirectorName);
-
         em.getTransaction().begin();
-        em.merge(director);
+
+        try {
+            director.setName(newDirectorName);
+        } catch (NullPointerException n) {
+            System.out.println("The inputted object does not exist in the database.");
+        }
+
         em.getTransaction().commit();
 
         em.close();
@@ -38,10 +42,13 @@ public class DirectorDao {
 
         Director director = em.find(Director.class, directorId);
 
-        director.setAge(newDirectorAge);
 
         em.getTransaction().begin();
-        em.merge(director);
+        try {
+            director.setAge(newDirectorAge);
+        } catch (NullPointerException n) {
+            System.out.println("The inputted object does not exist in the database.");
+        }
         em.getTransaction().commit();
 
         em.close();
@@ -60,10 +67,13 @@ public class DirectorDao {
 
         Director director = em.find(Director.class, directorId);
 
-        director.setGender(directorGender);
-
         em.getTransaction().begin();
-        em.merge(director);
+
+        try {
+            director.setGender(directorGender);
+        } catch (NullPointerException n) {
+            System.out.println("The inputted object does not exist in the database.");
+        }
         em.getTransaction().commit();
 
         em.close();
@@ -72,10 +82,17 @@ public class DirectorDao {
     public void deleteDirector(Long directorId) {
         EntityManager em = emf.createEntityManager();
 
-        Director director = em.find(Director.class, directorId);
-
         em.getTransaction().begin();
-        em.remove(director);
+
+
+        try {
+
+            em.remove(em.find(Director.class, directorId));
+
+        } catch (IllegalArgumentException i) {
+            System.out.println("The inputted object does not exist in the database.");
+            return;
+        }
         em.getTransaction().commit();
 
         em.close();
