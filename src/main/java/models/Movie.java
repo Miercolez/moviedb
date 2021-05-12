@@ -30,13 +30,13 @@ import javax.persistence.OneToMany;
  */
 @Entity
 
-  @NamedQueries({
-  @NamedQuery(name ="Movie.findAll", query = "SELECT m FROM Movie m"),
-  @NamedQuery(name ="Movie.findById", query = "SELECT m FROM Movie m WHERE m.id=:id"),
-  @NamedQuery(name ="Movie.findByTitle", query = "SELECT m FROM Movie m WHERE m.title=:title"),
-  @NamedQuery(name ="Movie.findByDuration", query = "SELECT m FROM Movie m WHERE m.duration=:duration"),
-  @NamedQuery(name ="Movie.findByYear", query = "SELECT m FROM Movie m WHERE m.releaseYear=:releaseYear")
-  })
+@NamedQueries({
+        @NamedQuery(name = "Movie.findAll", query = "SELECT m FROM Movie m"),
+        @NamedQuery(name = "Movie.findById", query = "SELECT m FROM Movie m WHERE m.id=:id"),
+        @NamedQuery(name = "Movie.findByTitle", query = "SELECT m FROM Movie m WHERE m.title=:title"),
+        @NamedQuery(name = "Movie.findByDuration", query = "SELECT m FROM Movie m WHERE m.duration=:duration"),
+        @NamedQuery(name = "Movie.findByYear", query = "SELECT m FROM Movie m WHERE m.releaseYear=:releaseYear")
+})
 
 public class Movie {
 
@@ -53,21 +53,21 @@ public class Movie {
     @Basic
     private int releaseYear;
 
-    @ManyToOne(targetEntity = Director.class, cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Director.class, cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Director director;
 
-    @OneToMany(targetEntity = MovieRating.class, mappedBy = "movie", cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = MovieRating.class, mappedBy = "movie", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<MovieRating> movieRatings = new ArrayList<>();
 
-    @ManyToMany(targetEntity = Actor.class, mappedBy = "movies", cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = Actor.class, mappedBy = "movies", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Actor> actors = new ArrayList<>();
 
-    @ManyToMany(targetEntity = MovieGenre.class, mappedBy = "movies", cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = MovieGenre.class, mappedBy = "movies", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<MovieGenre> movieGenres = new ArrayList<>();
 
     public Movie() {
     }
-    
+
     public Movie(String title, long duration, int releaseYear) {
         this.title = title;
         this.duration = duration;
@@ -167,10 +167,12 @@ public class Movie {
         for (MovieRating movieRating : movieRatings) {
             ratings += movieRating.getRating();
         }
-
-        return df.format(((double) ratings / (double) movieRatings.size()));
+        if (ratings != 0)
+            return df.format(((double) ratings / (double) movieRatings.size()));
+        else
+            return "Still no rating";
     }
-    
+
     @Override
     public String toString() {
         return "\nid: " + id + "\ntitle: " + title + "\nduration: " + duration + "\nreleaseYear: " + releaseYear + "\ndirector: " + director + "\navg rating: " + averageMovieRating() + "\nactors: " + actors + "\nGenres: " + movieGenres;
