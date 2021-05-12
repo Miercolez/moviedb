@@ -5,6 +5,7 @@ import models.Director;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class DirectorDao {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
@@ -57,8 +58,13 @@ public class DirectorDao {
     public void showAllDirectors() {
         EntityManager em = emf.createEntityManager();
 
-        em.createNamedQuery("Director.findAll", Director.class).getResultList().forEach(System.out::println);
 
+        List<Director> directors = em.createNamedQuery("Director.findAll", Director.class).getResultList();
+        if (directors != null) {
+            directors.forEach(System.out::println);
+        } else {
+            System.out.println("There is no directors to be shown.");
+        }
         em.close();
     }
 

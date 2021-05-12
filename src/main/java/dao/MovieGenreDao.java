@@ -28,7 +28,12 @@ public class MovieGenreDao {
         EntityManager em = emf.createEntityManager();
 
         List<MovieGenre> movieGenres = em.createNamedQuery("MovieGenre.findAll", MovieGenre.class).getResultList();
-        movieGenres.forEach(System.out::println);
+
+        if (movieGenres != null) {
+            movieGenres.forEach(System.out::println);
+        } else {
+            System.out.println("There is no movie genres to be shown.");
+        }
 
         em.close();
     }

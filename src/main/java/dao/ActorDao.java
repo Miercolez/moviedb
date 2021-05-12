@@ -21,7 +21,12 @@ public class ActorDao {
     public void showAllActors() {
         EntityManager em = emf.createEntityManager();
         List<Actor> actors = em.createNamedQuery("Actor.findAll", Actor.class).getResultList();
-        actors.forEach(System.out::println);
+        if (actors != null) {
+            actors.forEach(System.out::println);
+        } else {
+            System.out.println("There is no actors to be shown.");
+        }
+
         em.close();
     }
 
