@@ -1,26 +1,73 @@
 package utility;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Read {
 
     static Scanner sc = new Scanner(System.in);
 
-    public static int readInt(){
-        int temp = sc.nextInt();
-        sc.nextLine();
-        return temp;
+    public static int readInt() {
+        boolean loop = true;
+        while (loop) {
+            try {
+
+                int temp = sc.nextInt();
+                loop = false;
+                return temp;
+
+            } catch (InputMismatchException inputMismatchException) {
+
+                System.out.println("Wrong input, please try again.");
+
+            }finally {
+                sc.nextLine();
+            }
+        }
+        return 0;
     }
-    public static Long readLong(){
-        Long temp = sc.nextLong();
-        sc.nextLine();
-        return temp;
+
+    public static Long readLong() {
+        boolean loop = true;
+        while (loop) {
+            try {
+
+                Long temp = sc.nextLong();
+                loop = false;
+                return temp;
+
+            } catch (InputMismatchException inputMismatchException) {
+
+                System.out.println("Wrong input, please try again.");
+
+            }finally {
+                sc.nextLine();
+            }
+        }
+        return 0L;
     }
-    public static double readDouble(){
-        double temp = sc.nextDouble();
-        sc.nextLine();
-        return temp;
+
+    public static double readDouble() {
+        boolean loop = true;
+        while (loop) {
+            try {
+
+                double temp = sc.nextDouble();
+                loop = false;
+                return temp;
+
+            } catch (InputMismatchException inputMismatchException) {
+
+                System.out.println("Wrong input, please try again.");
+
+            }finally {
+                sc.nextLine();
+            }
+        }
+        return 0;
     }
-    public static String readLine(){
+
+    public static String readLine() {
         return sc.nextLine();
     }
 }
