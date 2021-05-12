@@ -1,6 +1,7 @@
 package Menus;
 
 import Functions.MovieGenreFunktions;
+import utility.Genres;
 
 import static utility.Read.*;
 
@@ -11,10 +12,8 @@ public class MovieGenreMenu {
 
         while (loop) {
             System.out.println("\n--|| Genre menu ||--");
-            System.out.println("[1] - Add genre");
-            System.out.println("[2] - Change genre");
-            System.out.println("[3] - Delete genre");
-            System.out.println("[4] - Show all genres");
+            System.out.println("[1] - Load genres to database");
+            System.out.println("[2] - Show all genres");
             System.out.println("[0] - Return to main");
 
             System.out.print("\nMake a choice: ");
@@ -22,15 +21,9 @@ public class MovieGenreMenu {
 
             switch (choice) {
                 case 1:
-                    AddGenre();
+                    LoadGenreToDB();
                     break;
                 case 2:
-                    ChangeGenre();
-                    break;
-                case 3:
-                    DeleteGenre();
-                    break;
-                case 4:
                     ShowAllGenre();
                     break;
                 case 0:
@@ -42,29 +35,15 @@ public class MovieGenreMenu {
         }
     }
 
-    private static void DeleteGenre() {
-        MovieGenreFunktions.ShowAllGenre();
-        System.out.print("\n Genre id: ");
-        Long id = readLong();
-        MovieGenreFunktions.DeleteGenre(id);
-    }
-
-    private static void ChangeGenre() {
-        MovieGenreFunktions.ShowAllGenre();
-        System.out.print("\nGenre id: ");
-        Long id = readLong();
-        System.out.print("New genre name: ");
-        String newName = readLine();
-        MovieGenreFunktions.ChangeGenre(id, newName);
-    }
-
     private static void ShowAllGenre() {
         MovieGenreFunktions.ShowAllGenre();
     }
 
-    private static void AddGenre() {
-        System.out.print("Genre: ");
-        String genre = readLine();
-        MovieGenreFunktions.AddGenre(genre);
+    private static void LoadGenreToDB() {
+        Genres[] genres = Genres.values();
+        for (Genres genre : genres) {
+            MovieGenreFunktions.AddGenre(genre);
+        }
+
     }
 }
