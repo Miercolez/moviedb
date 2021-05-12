@@ -22,6 +22,7 @@ public class StatisticMenu {
 
             System.out.println("[4] - Show Actor Female-Male Percentage Distribution for All movies");
             System.out.println("[5] - Show The Movie with the Lowest Average Rating");
+            System.out.println("[6] - Show The Movie with the Highest Average Rating");
             System.out.println("[0] - Return to main");
 
             System.out.print("\nMake a choice: ");
@@ -43,6 +44,9 @@ public class StatisticMenu {
                 case 5:
                     showMovieWithLowestAverageRating();
                     break;
+                case 6:
+                    showMovieWithHighestAverageRating();
+                    break;
                 case 0:
                     loop = false;
                     break;
@@ -50,6 +54,11 @@ public class StatisticMenu {
                     System.out.println("Wrong input!");
             }
         }
+    }
+
+    private static void showMovieWithHighestAverageRating() {
+
+        StatisticFunctions.showMovieWithHighestAverageRating();
     }
 
     private static void showMovieWithLowestAverageRating() {
