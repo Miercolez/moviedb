@@ -14,11 +14,13 @@ public class MovieGenreDao {
     public void AddGenre(MovieGenre movieGenre) {
 
         EntityManager em = emf.createEntityManager();
-
-        em.getTransaction().begin();
-        em.persist(movieGenre);
-        em.getTransaction().commit();
-
+        List<MovieGenre> movieGenress = em.createNamedQuery("MovieGenre.findAll", MovieGenre.class).getResultList();
+        try {
+            em.getTransaction().begin();
+            em.persist(movieGenre);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+        }
         em.close();
     }
 
@@ -27,29 +29,6 @@ public class MovieGenreDao {
 
         List<MovieGenre> movieGenres = em.createNamedQuery("MovieGenre.findAll", MovieGenre.class).getResultList();
         movieGenres.forEach(System.out::println);
-
-        em.close();
-    }
-
-    public void ChangeGenre(Long id, String newName) {
-        EntityManager em = emf.createEntityManager();
-        MovieGenre movieGenre = em.find(MovieGenre.class, id);
-
-        em.getTransaction().begin();
-        movieGenre.setGenre(newName);
-        em.getTransaction().commit();
-
-
-        em.close();
-    }
-
-    public void DeleteGenre(Long id) {
-        EntityManager em = emf.createEntityManager();
-        MovieGenre movieGenre = em.find(MovieGenre.class, id);
-
-        em.getTransaction().begin();
-        em.remove(movieGenre);
-        em.getTransaction().commit();
 
         em.close();
     }
