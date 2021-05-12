@@ -43,7 +43,12 @@ public class RatingDao {
         MovieRating movieRating = em.find(MovieRating.class, ratingId);
 
         em.getTransaction().begin();
-        em.remove(movieRating);
+        try {
+            em.remove(movieRating);
+        }catch(IllegalArgumentException i){
+            System.out.println("The inputted object does not exist in the database.");
+            return;
+        }
         em.getTransaction().commit();
 
         em.close();
@@ -56,10 +61,14 @@ public class RatingDao {
 
         MovieRating movieRating = em.find(MovieRating.class, ratingId);
 
-        movieRating.setRating(newRating);
+
 
         em.getTransaction().begin();
-        em.merge(movieRating);
+        try {
+            movieRating.setRating(newRating);
+        }catch(NullPointerException n){
+            System.out.println("The inputted object does not exist in the database.");
+        }
         em.getTransaction().commit();
 
         em.close();
