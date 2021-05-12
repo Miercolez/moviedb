@@ -81,7 +81,7 @@ public class MovieMenu {
         showAllMovies();
         System.out.println("Movie id: ");
         Long movieId = readLong();
-        Genres genre = ChooseGenreMenu();
+        Genres genre = readGenre();
 
         MovieFunctions.addGenreToMovie(movieId, genre);
     }
