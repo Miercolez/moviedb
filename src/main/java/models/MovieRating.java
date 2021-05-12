@@ -20,9 +20,10 @@ import javax.persistence.NamedQuery;
 @Entity
 
 @NamedQueries({
-@NamedQuery(name = "MovieRating.findAll", query = "SELECT r FROM MovieRating r"),
-@NamedQuery(name = "MovieRating.findById", query = "SELECT r FROM MovieRating r WHERE r.id=:id"),
-@NamedQuery(name = "MovieRating.findByRating", query = "SELECT r FROM MovieRating r WHERE r.rating=:rating")
+        @NamedQuery(name = "MovieRating.findAll", query = "SELECT r FROM MovieRating r"),
+        @NamedQuery(name = "MovieRating.findById", query = "SELECT r FROM MovieRating r WHERE r.id=:id"),
+        @NamedQuery(name = "MovieRating.findByRating", query = "SELECT r FROM MovieRating r WHERE r.rating=:rating"),
+        @NamedQuery(name = "MovieRating.findAverageRating", query = "SELECT AVG(r.rating) FROM MovieRating  r")
 })
 
 public class MovieRating {
@@ -34,7 +35,7 @@ public class MovieRating {
     @Basic
     private int rating;
 
-    @ManyToOne(targetEntity = Movie.class, cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Movie.class, cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Movie movie;
 
     public MovieRating() {
@@ -72,7 +73,6 @@ public class MovieRating {
     public String toString() {
         return "rating=" + rating;
     }
-
 
 
 }
