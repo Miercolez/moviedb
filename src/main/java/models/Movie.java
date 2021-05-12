@@ -156,7 +156,7 @@ public class Movie {
 
         return (double) ratings / (double) movieRatings.size();
     }
-
+    
     @Override
     public String toString() {
         return "\nid: " + id + "\ntitle: " + title + "\nduration: " + duration + "\nreleaseYear: " + releaseYear + "\ndirector: " + director + "\navg rating: " + averageMovieRating() + "\nactors: " + actors + "\nGenres: " + movieGenres;
