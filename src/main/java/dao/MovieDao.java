@@ -38,10 +38,16 @@ public class MovieDao {
 
     public void deleteMovie(Long id) {
         EntityManager em = emf.createEntityManager();
-        Movie movie =em.find(Movie.class,id);
+        Movie movie = em.find(Movie.class, id);
 
         em.getTransaction().begin();
-        em.remove(movie);
+        try {
+            em.remove(movie);
+        } catch (IllegalArgumentException i) {
+            System.out.println("The inputted object does not exist in the database");
+            em.close();
+            return;
+        }
         em.getTransaction().commit();
 
         em.close();
@@ -51,10 +57,16 @@ public class MovieDao {
         EntityManager em = emf.createEntityManager();
 
         Movie movie = em.find(Movie.class, id);
-        movie.setTitle(title);
+
 
         em.getTransaction().begin();
-        em.merge(movie);
+        try {
+            movie.setTitle(title);
+        } catch (NullPointerException npe) {
+            System.out.println("One of the inputted objects does not exist in the database");
+            em.close();
+            return;
+        }
         em.getTransaction().commit();
 
         em.close();
@@ -65,7 +77,13 @@ public class MovieDao {
         Movie movie = em.find(Movie.class, movieId);
         Actor actor = em.find(Actor.class, actorId);
         em.getTransaction().begin();
-        actor.addMovie(movie);
+        try {
+            actor.addMovie(movie);
+        } catch (NullPointerException npe) {
+            System.out.println("One of the inputted objects does not exist in the database");
+            em.close();
+            return;
+        }
         em.getTransaction().commit();
         em.close();
     }
@@ -77,9 +95,11 @@ public class MovieDao {
         Movie movie = em.find(Movie.class, movieId);
 
         em.getTransaction().begin();
-
-        movie.setDirector(director);
-
+        try {
+            movie.setDirector(director);
+        } catch (NullPointerException n) {
+            System.out.println("One of the inputted objects does not exist in the database");
+        }
         em.getTransaction().commit();
         em.close();
     }
@@ -90,8 +110,12 @@ public class MovieDao {
         Actor oldActor = em.find(Actor.class, oldActorId);
         Actor newActor = em.find(Actor.class, newActorId);
         em.getTransaction().begin();
-        oldActor.removeMovie(movie);
-        newActor.addMovie(movie);
+        try {
+            oldActor.removeMovie(movie);
+            newActor.addMovie(movie);
+        } catch (NullPointerException n) {
+            System.out.println("One of the inputted objects does not exist in the database");
+        }
         em.getTransaction().commit();
         em.close();
     }
@@ -102,7 +126,11 @@ public class MovieDao {
         Movie movie = em.find(Movie.class, movieId);
         Actor actor = em.find(Actor.class, actorId);
         em.getTransaction().begin();
-        actor.removeMovie(movie);
+        try {
+            actor.removeMovie(movie);
+        } catch (NullPointerException n) {
+            System.out.println("One of the inputted objects does not exist in the database");
+        }
         em.getTransaction().commit();
         em.close();
     }
@@ -111,7 +139,12 @@ public class MovieDao {
         EntityManager em = emf.createEntityManager();
         Movie movie = em.find(Movie.class, movieId);
         em.getTransaction().begin();
-        movie.setDirector(null);
+        try {
+            movie.setDirector(null);
+        } catch (NullPointerException n) {
+            System.out.println("One of the inputted objects does not exist in the database");
+        }
+
         em.getTransaction().commit();
         em.close();
     }
