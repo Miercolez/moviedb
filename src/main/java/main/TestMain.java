@@ -2,7 +2,7 @@ package main;
 
 import utility.Genres;
 
-import static Menus.chooseGenreMenu.ChooseGenreMenu;
+import static Menus.ChooseGenreMenu.ChooseGenreMenu;
 
 public class TestMain {
 

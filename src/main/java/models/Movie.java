@@ -136,8 +136,8 @@ public class Movie {
     public void setActors(List<Actor> actors) {
         this.actors = actors;
     }
-    
-    public void addActor(Actor actor){
+
+    public void addActor(Actor actor) {
         this.actors.add(actor);
     }
 
@@ -147,6 +147,11 @@ public class Movie {
 
     public void setMovieGenres(List<MovieGenre> movieGenres) {
         this.movieGenres = movieGenres;
+    }
+
+    public void addMoviewGenres(MovieGenre genre) {
+        this.movieGenres.add(genre);
+        genre.addMovie(this);
     }
 
     public String averageMovieRating() {
@@ -165,5 +170,6 @@ public class Movie {
     public String toString() {
         return "\nid: " + id + "\ntitle: " + title + "\nduration: " + duration + "\nreleaseYear: " + releaseYear + "\ndirector: " + director + "\navg rating: " + averageMovieRating() + "\nactors: " + actors + "\nGenres: " + movieGenres;
     }
+
 
 }
