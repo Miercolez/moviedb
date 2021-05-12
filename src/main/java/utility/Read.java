@@ -20,6 +20,8 @@ public class Read {
 
                 System.out.println("Wrong input, please try again.");
 
+                System.out.print("\nMake a choice: ");
+
             }finally {
                 sc.nextLine();
             }
@@ -40,6 +42,8 @@ public class Read {
 
                 System.out.println("Wrong input, please try again.");
 
+                System.out.print("\nMake a choice: ");
+
             }finally {
                 sc.nextLine();
             }
@@ -59,6 +63,8 @@ public class Read {
             } catch (InputMismatchException inputMismatchException) {
 
                 System.out.println("Wrong input, please try again.");
+
+                System.out.print("\nMake a choice: ");
 
             }finally {
                 sc.nextLine();
