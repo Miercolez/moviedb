@@ -7,6 +7,8 @@ import models.Movie;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.Comparator;
+import java.util.List;
 
 public class StatisticDao {
 
@@ -70,6 +72,54 @@ public class StatisticDao {
 
         EntityManager em = emf.createEntityManager();
 
+        List<Movie> movies = em.createNamedQuery("Movie.findAll", Movie.class).getResultList();
+
+        try {
+            System.out.println("\nThe movie with lowest average rating is:");
+            System.out.print(movies.stream()
+                    .filter(m -> !m.equals("Still no rating"))
+                    .min(Comparator.comparing(Movie::averageMovieRating))
+                    .get()
+                    .getTitle());
+
+            System.out.println(" with rating of " + movies.stream()
+                    .filter(m -> !m.equals("Still no rating"))
+                    .map(m -> m.averageMovieRating())
+                    .min(String::compareTo)
+                    .get() + ".");
+
+        } catch (NullPointerException npe) {
+            System.out.println("There is still movies with no rating. Please add a rating to see this statistic");
+        }
+
+        em.close();
+    }
+
+    public void showMovieWithHighestAverageRating() {
+
+        EntityManager em = emf.createEntityManager();
+
+        List<Movie> movies = em.createNamedQuery("Movie.findAll", Movie.class).getResultList();
+
+        try {
+            System.out.println("\nThe movie with highest average rating is:");
+
+            System.out.print(movies.stream()
+                    .filter(m -> !m.equals("Still no rating"))
+                    .max(Comparator.comparing(Movie::averageMovieRating))
+                    .get().getTitle());
+
+            System.out.println(" with rating of " + movies.stream()
+                    .filter(m -> !m.equals("Still no rating"))
+                    .map(m -> m.averageMovieRating())
+                    .max(String::compareTo)
+                    .get() + ".");
+
+        } catch (NullPointerException npe) {
+            System.out.println("There is still movies with no rating. Please add a rating to see this statistic");
+        }
+
+        em.close();
 
     }
 }

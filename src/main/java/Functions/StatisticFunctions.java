@@ -27,4 +27,9 @@ public class StatisticFunctions {
 
         statisticDao.showMovieWithLowestAverageRating();
     }
+
+    public static void showMovieWithHighestAverageRating() {
+
+        statisticDao.showMovieWithHighestAverageRating();
+    }
 }
