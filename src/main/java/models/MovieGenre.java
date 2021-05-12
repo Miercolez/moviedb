@@ -81,6 +81,7 @@ public class MovieGenre {
         this.movies.add(movie);
     }
 
+
     @Override
     public String toString() {
         return "MovieGenre{" + "id=" + id + ", genre=" + genre + '}';
