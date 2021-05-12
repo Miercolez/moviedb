@@ -84,7 +84,9 @@ public class MovieGenre {
 
     @Override
     public String toString() {
-        return "MovieGenre{" + "id=" + id + ", genre=" + genre + '}';
+
+        return genre.toString();
+
     }
 
 
