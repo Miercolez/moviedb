@@ -3,6 +3,8 @@ package dao;
 import models.Actor;
 import models.Director;
 import models.Movie;
+import models.MovieGenre;
+import utility.Genres;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -74,7 +76,7 @@ public class StatisticDao {
 
         List<Movie> movies = em.createNamedQuery("Movie.findAll", Movie.class).getResultList();
 
-        try {
+
             System.out.println("\nThe movie with lowest average rating is:");
             System.out.print(movies.stream()
                     .filter(m -> !m.averageMovieRating().equals("Still no rating"))
@@ -83,14 +85,10 @@ public class StatisticDao {
                     .getTitle());
 
             System.out.println(" with rating of " + movies.stream()
-                    .filter(m -> !m.averageMovieRating().equals("Still no rating"))
                     .map(m -> m.averageMovieRating())
+                    .filter(s -> !s.equals("Still no rating"))
                     .min(String::compareTo)
                     .get() + ".");
-
-        } catch (NullPointerException npe) {
-            System.out.println("There is still movies with no rating. Please add a rating to see this statistic");
-        }
 
         em.close();
     }
@@ -101,7 +99,7 @@ public class StatisticDao {
 
         List<Movie> movies = em.createNamedQuery("Movie.findAll", Movie.class).getResultList();
 
-        try {
+
             System.out.println("\nThe movie with highest average rating is:");
 
             System.out.print(movies.stream()
@@ -115,9 +113,20 @@ public class StatisticDao {
                     .max(String::compareTo)
                     .get() + ".");
 
-        } catch (NullPointerException npe) {
-            System.out.println("There is still movies with no rating. Please add a rating to see this statistic");
-        }
+        em.close();
+
+    }
+
+    public void showAllMoviesInASpecificGenre(Genres genre) {
+        EntityManager em = emf.createEntityManager();
+
+        MovieGenre g = em.createQuery("SELECT g FROM MovieGenre g WHERE g.genre =:genre", MovieGenre.class)
+                .setParameter("genre", genre)
+                .getSingleResult();
+
+        System.out.println("\nMovies with the " + genre.toString() + " genre is: ");
+        g.getMovies().forEach(movie->System.out.println(movie.getTitle()));
+
 
         em.close();
 

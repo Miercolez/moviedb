@@ -1,9 +1,10 @@
 package Menus;
 
 import Functions.StatisticFunctions;
+import models.MovieGenre;
+import utility.Genres;
 
-import static utility.Read.readInt;
-import static utility.Read.readLong;
+import static utility.Read.*;
 
 public class StatisticMenu {
 
@@ -18,7 +19,7 @@ public class StatisticMenu {
             System.out.println("[1] - Show Total Number of Actors and Directors");
             System.out.println("[2] - Show Number of Actors in A Movie");
 
-//            System.out.println("[3] - Show All Movies in a Specific Genre");
+            System.out.println("[3] - Show All Movies in a Specific Genre");
 
             System.out.println("[4] - Show Actor Female-Male Percentage Distribution for All movies");
             System.out.println("[5] - Show The Movie with the Lowest Average Rating");
@@ -36,7 +37,7 @@ public class StatisticMenu {
                     showNumberOfActorsInAMovie();
                     break;
                 case 3:
-//                    showAllMoviesInASpecificGenre();
+                    showAllMoviesInASpecificGenre();
                     break;
                 case 4:
                     showActorsFemaleToMaleDistribution();
@@ -72,8 +73,8 @@ public class StatisticMenu {
     }
 
     private static void showAllMoviesInASpecificGenre() {
-
-        System.out.println("Movie genre");
+        Genres genre = readGenre();
+        StatisticFunctions.showAllMoviesInASpecificGenre(genre);
 
     }
 

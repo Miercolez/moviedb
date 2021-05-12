@@ -1,6 +1,7 @@
 package Functions;
 
 import dao.StatisticDao;
+import utility.Genres;
 
 public class StatisticFunctions {
 
@@ -31,5 +32,11 @@ public class StatisticFunctions {
     public static void showMovieWithHighestAverageRating() {
 
         statisticDao.showMovieWithHighestAverageRating();
+    }
+
+    public static void showAllMoviesInASpecificGenre(Genres genre) {
+
+        statisticDao.showAllMoviesInASpecificGenre(genre);
+
     }
 }
