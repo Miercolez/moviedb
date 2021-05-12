@@ -1,12 +1,15 @@
 package Menus;
 
 import Functions.MovieFunctions;
+import models.MovieGenre;
 import utility.Genres;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static Menus.ActorMenu.showAllActors;
 import static Menus.DirectorMenu.showAllDirectors;
 import static utility.Read.*;
-import static Menus.ChooseGenreMenu.*;
 
 public class MovieMenu {
 
@@ -24,7 +27,7 @@ public class MovieMenu {
             System.out.println("[8] - Delete movie");
             System.out.println("[9] - Remove actor from movie");
             System.out.println("[10] - Remove director from movie");
-//        System.out.println("[11] - Remove genre from movie");
+            System.out.println("[11] - Remove genre from movie");
             System.out.println("[12] - Show all movies");
             System.out.println("[0] - Return to main");
 
@@ -63,7 +66,7 @@ public class MovieMenu {
                     removeDirectorFromMovie();
                     break;
                 case 11:
-
+                    removeGenreFromMovie();
                     break;
                 case 12:
                     showAllMovies();
@@ -74,6 +77,23 @@ public class MovieMenu {
                 default:
                     System.out.println("Wrong input!");
             }
+        }
+    }
+
+    private static void removeGenreFromMovie() {
+        showAllMovies();
+        System.out.println("Movie id: ");
+        Long movieId = readLong();
+        List<MovieGenre> genres = MovieFunctions.showGenreForMovie(movieId);
+        if (genres.size() != 0) {
+            List<String> genresString = genres.stream()
+                    .map(g -> g.getGenre().getLable())
+                    .collect(Collectors.toList());
+            int index = chooseFromGenreList(genresString) - 1;
+            MovieGenre movieGenre = genres.get(index);
+            MovieFunctions.removeGenreFromMovie(movieGenre, movieId);
+        } else {
+            System.out.println("No genres to remove");
         }
     }
 

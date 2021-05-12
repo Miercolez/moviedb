@@ -154,6 +154,11 @@ public class Movie {
         genre.addMovie(this);
     }
 
+    public void removeMovieGenre(MovieGenre genre) {
+        this.movieGenres.remove(genre);
+        genre.removeMovie(this);
+    }
+
     public String averageMovieRating() {
         int ratings = 0;
 

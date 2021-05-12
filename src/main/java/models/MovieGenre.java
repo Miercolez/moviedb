@@ -16,7 +16,7 @@ import javax.persistence.*;
 @Entity
 
 @NamedQueries({
-@NamedQuery(name = "MovieGenre.findAll", query = "SELECT g FROM MovieGenre g"),
+        @NamedQuery(name = "MovieGenre.findAll", query = "SELECT g FROM MovieGenre g"),
         @NamedQuery(name = "MovieGenre.findById", query = "SELECT g FROM MovieGenre g WHERE g.id=:id"),
         @NamedQuery(name = "MovieGenre.findByGenre", query = "SELECT g FROM MovieGenre g WHERE g.genre=:genre")
 })
@@ -81,6 +81,9 @@ public class MovieGenre {
         this.movies.add(movie);
     }
 
+    public void removeMovie(Movie movie) {
+        this.movies.remove(movie);
+    }
 
     @Override
     public String toString() {

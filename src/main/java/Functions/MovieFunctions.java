@@ -2,7 +2,10 @@ package Functions;
 
 import dao.MovieDao;
 import models.Movie;
+import models.MovieGenre;
 import utility.Genres;
+
+import java.util.List;
 
 public class MovieFunctions {
 
@@ -61,5 +64,14 @@ public class MovieFunctions {
     public static void addGenreToMovie(Long movieId, Genres genre) {
         movieDao.addGenreToMovie(movieId, genre);
 
+    }
+
+    public static List<MovieGenre> showGenreForMovie(Long movieId) {
+        return movieDao.showGenreForMovie(movieId);
+
+    }
+
+    public static void removeGenreFromMovie(MovieGenre genre, Long movieId) {
+        movieDao.removeGenreFromMovie(genre, movieId);
     }
 }
