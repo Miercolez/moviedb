@@ -4,7 +4,11 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.OptionalDouble;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -17,6 +21,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+
 
 /**
  * @author Jonas
@@ -142,9 +147,19 @@ public class Movie {
         this.movieGenres = movieGenres;
     }
 
+    public double averageMovieRating() {
+        int ratings = 0;
+
+        for (MovieRating movieRating : movieRatings) {
+            ratings += movieRating.getRating();
+        }
+
+        return (double) ratings / (double) movieRatings.size();
+    }
+
     @Override
     public String toString() {
-        return "\nid: " + id + "\ntitle: " + title + "\nduration: " + duration + "\nreleaseYear: " + releaseYear + "\ndirector: " + director + "\nrating: " + movieRatings + "\nactors: " + actors + "\nGenres: " + movieGenres;
+        return "\nid: " + id + "\ntitle: " + title + "\nduration: " + duration + "\nreleaseYear: " + releaseYear + "\ndirector: " + director + "\navg rating: " + averageMovieRating() + "\nactors: " + actors + "\nGenres: " + movieGenres;
     }
 
 }
