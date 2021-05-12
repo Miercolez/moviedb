@@ -84,7 +84,9 @@ public class MovieMenu {
         showAllMovies();
         System.out.println("Movie id: ");
         Long movieId = readLong();
+
         List<MovieGenre> genres = MovieFunctions.showGenreForMovie(movieId);
+
         if (genres.size() != 0) {
             List<String> genresString = genres.stream()
                     .map(g -> g.getGenre().getLable())

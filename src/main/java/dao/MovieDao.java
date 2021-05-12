@@ -8,6 +8,7 @@ import models.MovieGenre;
 import utility.Genres;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -161,8 +162,6 @@ public class MovieDao {
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
 
-        System.out.println("----" + genreDB);
-
         em.getTransaction().begin();
         movie.addMoviewGenres(genreDB);
         try {
@@ -182,7 +181,12 @@ public class MovieDao {
     public List<MovieGenre> showGenreForMovie(Long movieId) {
         EntityManager em = emf.createEntityManager();
         Movie movie = em.find(Movie.class, movieId);
-        List<MovieGenre> genres = movie.getMovieGenres();
+        List<MovieGenre> genres;
+        try {
+            genres = movie.getMovieGenres();
+        } catch (NullPointerException e) {
+            return new ArrayList<MovieGenre>();
+        }
         em.close();
         return genres;
     }
@@ -192,7 +196,12 @@ public class MovieDao {
         Movie movie = em.find(Movie.class, movieId);
 
         em.getTransaction().begin();
-        movie.removeMovieGenre(em.merge(genre));
+        try {
+            movie.removeMovieGenre(em.merge(genre));
+        } catch (NullPointerException e) {
+
+            System.out.println("One of the inputted objects does not exist in the database");
+        }
         em.getTransaction().commit();
 
         em.close();
