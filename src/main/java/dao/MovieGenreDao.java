@@ -29,7 +29,7 @@ public class MovieGenreDao {
 
         List<MovieGenre> movieGenres = em.createNamedQuery("MovieGenre.findAll", MovieGenre.class).getResultList();
 
-        if (movieGenres != null) {
+        if (movieGenres.size() != 0) {
             movieGenres.forEach(System.out::println);
         } else {
             System.out.println("There is no movie genres to be shown.");
