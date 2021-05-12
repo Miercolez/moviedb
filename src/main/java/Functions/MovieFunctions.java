@@ -2,6 +2,7 @@ package Functions;
 
 import dao.MovieDao;
 import models.Movie;
+import utility.Genres;
 
 public class MovieFunctions {
 
@@ -54,5 +55,11 @@ public class MovieFunctions {
 
     public static void removeDirectorFromMovie(Long movieId) {
         movieDao.removeDirectorFromMovie(movieId);
+    }
+
+
+    public static void addGenreToMovie(Long movieId, Genres genre) {
+        movieDao.addGenreToMovie(movieId, genre);
+
     }
 }

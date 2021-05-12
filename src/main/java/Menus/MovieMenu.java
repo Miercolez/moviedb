@@ -1,10 +1,12 @@
 package Menus;
 
 import Functions.MovieFunctions;
+import utility.Genres;
 
 import static Menus.ActorMenu.showAllActors;
 import static Menus.DirectorMenu.showAllDirectors;
 import static utility.Read.*;
+import static Menus.ChooseGenreMenu.*;
 
 public class MovieMenu {
 
@@ -15,7 +17,7 @@ public class MovieMenu {
             System.out.println("[1] - Add new movie");
             System.out.println("[2] - Add existing actor to existing movie");
             System.out.println("[3] - Add existing director to existing movie");
-//        System.out.println("[4] - Add genre");
+            System.out.println("[4] - Add genre");
             System.out.println("[5] - Change movie title");
             System.out.println("[6] - Change actor");
             System.out.println("[7] - Change director");
@@ -40,7 +42,7 @@ public class MovieMenu {
                     addExistingDirectorToExistingMovie();
                     break;
                 case 4:
-
+                    addGenreToMovie();
                     break;
                 case 5:
                     changeMovieTitle();
@@ -73,6 +75,15 @@ public class MovieMenu {
                     System.out.println("Wrong input!");
             }
         }
+    }
+
+    private static void addGenreToMovie() {
+        showAllMovies();
+        System.out.println("Movie id: ");
+        Long movieId = readLong();
+        Genres genre = ChooseGenreMenu();
+
+        MovieFunctions.addGenreToMovie(movieId, genre);
     }
 
     private static void removeDirectorFromMovie() {
