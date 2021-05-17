@@ -8,7 +8,12 @@ import javax.persistence.Persistence;
 import java.util.List;
 
 public class DirectorDao {
+
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
+
+    public void closeEmf() {
+        emf.close();
+    }
 
     public void addDirector(Director director) {
         EntityManager em = emf.createEntityManager();

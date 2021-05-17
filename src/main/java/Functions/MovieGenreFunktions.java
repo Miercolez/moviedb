@@ -8,6 +8,10 @@ public class MovieGenreFunktions {
 
     private static final MovieGenreDao movieGenreDao = new MovieGenreDao();
 
+    public static void closeEmf() {
+        movieGenreDao.closeEmf();
+    }
+
     public static void AddGenre(Genres genre) {
         MovieGenre movieGenre = new MovieGenre(genre);
         movieGenreDao.AddGenre(movieGenre);

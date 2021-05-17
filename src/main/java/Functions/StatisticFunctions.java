@@ -7,6 +7,10 @@ public class StatisticFunctions {
 
     static StatisticDao statisticDao = new StatisticDao();
 
+    public static void closeEmf() {
+        statisticDao.closeEmf();
+    }
+
     public static void showTotalNumbersOfActorsAndDirectors() {
 
         statisticDao.showTotalNumbersOfActorsAndDirectors();

@@ -12,6 +12,10 @@ public class RatingDao {
 
     static EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
 
+    public void closeEmf() {
+        emf.close();
+    }
+
     public void addRating(MovieRating rating, Long movieId) {
 
         EntityManager em = emf.createEntityManager();
@@ -50,7 +54,7 @@ public class RatingDao {
         em.getTransaction().begin();
         try {
             em.remove(movieRating);
-        }catch(IllegalArgumentException i){
+        } catch (IllegalArgumentException i) {
             System.out.println("The inputted object does not exist in the database.");
             return;
         }
@@ -67,11 +71,10 @@ public class RatingDao {
         MovieRating movieRating = em.find(MovieRating.class, ratingId);
 
 
-
         em.getTransaction().begin();
         try {
             movieRating.setRating(newRating);
-        }catch(NullPointerException n){
+        } catch (NullPointerException n) {
             System.out.println("The inputted object does not exist in the database.");
         }
         em.getTransaction().commit();

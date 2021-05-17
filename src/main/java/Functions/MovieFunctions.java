@@ -11,6 +11,10 @@ public class MovieFunctions {
 
     static MovieDao movieDao = new MovieDao();
 
+    public static void closeEmf() {
+        movieDao.closeEmf();
+    }
+
     public static void createNewMovie(String movieTitle, Long movieDuration, int releaseYear) {
         Movie movie = new Movie(movieTitle, movieDuration, releaseYear);
 
@@ -28,7 +32,7 @@ public class MovieFunctions {
     }
 
     public static void changeMovieTitle(Long id, String title) {
-        movieDao.changeMovieTitle(id,title);
+        movieDao.changeMovieTitle(id, title);
     }
 
     public static void addExistingActorToExistingMovie(Long actorId, Long movieId) {

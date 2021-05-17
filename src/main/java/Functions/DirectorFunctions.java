@@ -7,6 +7,10 @@ public class DirectorFunctions {
 
     static DirectorDao directorDao = new DirectorDao();
 
+    public static void closeEmf() {
+        directorDao.closeEmf();
+    }
+
     public static void addDirector(String directorName, int directorAge, String directorGender) {
 
         Director director = new Director(directorName, directorAge, directorGender);
