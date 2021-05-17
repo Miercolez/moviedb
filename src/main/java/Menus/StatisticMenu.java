@@ -1,7 +1,6 @@
 package Menus;
 
 import Functions.StatisticFunctions;
-import models.MovieGenre;
 import utility.Genres;
 
 import static utility.Read.*;
@@ -80,7 +79,7 @@ public class StatisticMenu {
 
     private static void showNumberOfActorsInAMovie() {
 
-//        MovieMenu.showAllMovies();
+        MovieMenu.showAllMovies();
         System.out.println("Movie Id: ");
         Long movieId = readLong();
 

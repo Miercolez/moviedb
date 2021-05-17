@@ -16,18 +16,18 @@ public enum Genres {
     THRILLER("thriller"),
     WESTERN("western");
 
-    public final String lable;
+    public final String label;
 
-    Genres(String lable) {
-        this.lable = lable;
+    Genres(String label) {
+        this.label = label;
     }
 
-    public String getLable() {
-        return lable;
+    public String getLabel() {
+        return label;
     }
 
     @Override
     public String toString() {
-        return lable;
+        return label;
     }
 }

@@ -1,8 +1,5 @@
 package main;
 
-
-import Menus.StatisticMenu;
-
 import static Menus.ActorMenu.actorMenu;
 import static Menus.DirectorMenu.directorMenu;
 import static Menus.MovieGenreMenu.genreMenu;

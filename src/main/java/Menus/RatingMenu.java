@@ -55,7 +55,13 @@ public class RatingMenu {
         System.out.print("New Rating: ");
         int newRating = readInt();
 
-        RatingFunctions.changeRating(ratingId, newRating);
+        if (newRating < 1 || newRating > 10) {
+
+            System.out.println("Wrong input!");
+
+        } else {
+            RatingFunctions.changeRating(ratingId, newRating);
+        }
     }
 
     private static void addRating() {
