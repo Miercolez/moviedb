@@ -7,6 +7,10 @@ public class RatingFunctions {
 
     static RatingDao ratingDao = new RatingDao();
 
+    public static void closeEmf() {
+        ratingDao.closeEmf();
+    }
+
     public static void addRating(Long movieId, int movieRating) {
 
         MovieRating rating = new MovieRating(movieRating);

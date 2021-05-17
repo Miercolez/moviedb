@@ -11,6 +11,10 @@ public class MovieGenreDao {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
 
+    public void closeEmf() {
+        emf.close();
+    }
+
     public void AddGenre(MovieGenre movieGenre) {
 
         EntityManager em = emf.createEntityManager();

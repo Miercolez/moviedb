@@ -1,5 +1,7 @@
 package main;
 
+import Functions.*;
+
 import static Menus.ActorMenu.actorMenu;
 import static Menus.DirectorMenu.directorMenu;
 import static Menus.MovieGenreMenu.genreMenu;
@@ -68,7 +70,15 @@ public class Main {
 
                 break;
             case 0:
+
                 loopMainMenu = false;
+                ActorFunctions.closeEmf();
+                MovieFunctions.closeEmf();
+                DirectorFunctions.closeEmf();
+                MovieGenreFunktions.closeEmf();
+                RatingFunctions.closeEmf();
+                StatisticFunctions.closeEmf();
+
                 break;
             default:
                 System.out.println("Wrong input!");

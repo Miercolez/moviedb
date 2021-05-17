@@ -13,6 +13,10 @@ import java.util.List;
 public class MovieDao {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
 
+    public void closeEmf() {
+        emf.close();
+    }
+
     public void createNewMovie(Movie movie) {
         EntityManager em = emf.createEntityManager();
 
@@ -202,7 +206,8 @@ public class MovieDao {
 
         em.close();
     }
-    public Movie findMovie(Long movieId){
+
+    public Movie findMovie(Long movieId) {
         EntityManager em = emf.createEntityManager();
         Movie movie = em.find(Movie.class, movieId);
         em.close();

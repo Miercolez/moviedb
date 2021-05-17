@@ -16,6 +16,10 @@ public class StatisticDao {
 
     static EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
 
+    public void closeEmf() {
+        emf.close();
+    }
+
     public void showTotalNumbersOfActorsAndDirectors() {
 
         EntityManager em = emf.createEntityManager();
@@ -57,7 +61,6 @@ public class StatisticDao {
                 .setParameter("male", "Male").getSingleResult();
 
 
-
         System.out.println("\nTotal Number of Actors= " + (females + males));
         System.out.println("Total Number of Female Actors= " + females);
         System.out.println("Total Number of Male Actors= " + males);
@@ -74,18 +77,18 @@ public class StatisticDao {
         List<Movie> movies = em.createNamedQuery("Movie.findAll", Movie.class).getResultList();
 
 
-            System.out.println("\nThe movie with lowest average rating is:");
-            System.out.print(movies.stream()
-                    .filter(m -> !m.averageMovieRating().equals("Still no rating"))
-                    .min(Comparator.comparing(Movie::averageMovieRating))
-                    .get()
-                    .getTitle());
+        System.out.println("\nThe movie with lowest average rating is:");
+        System.out.print(movies.stream()
+                .filter(m -> !m.averageMovieRating().equals("Still no rating"))
+                .min(Comparator.comparing(Movie::averageMovieRating))
+                .get()
+                .getTitle());
 
-            System.out.println(" with rating of " + movies.stream()
-                    .map(Movie::averageMovieRating)
-                    .filter(s -> !s.equals("Still no rating"))
-                    .min(String::compareTo)
-                    .get() + ".");
+        System.out.println(" with rating of " + movies.stream()
+                .map(Movie::averageMovieRating)
+                .filter(s -> !s.equals("Still no rating"))
+                .min(String::compareTo)
+                .get() + ".");
 
         em.close();
     }
@@ -97,18 +100,18 @@ public class StatisticDao {
         List<Movie> movies = em.createNamedQuery("Movie.findAll", Movie.class).getResultList();
 
 
-            System.out.println("\nThe movie with highest average rating is:");
+        System.out.println("\nThe movie with highest average rating is:");
 
-            System.out.print(movies.stream()
-                    .filter(m -> !m.averageMovieRating().equals("Still no rating"))
-                    .max(Comparator.comparing(Movie::averageMovieRating))
-                    .get().getTitle());
+        System.out.print(movies.stream()
+                .filter(m -> !m.averageMovieRating().equals("Still no rating"))
+                .max(Comparator.comparing(Movie::averageMovieRating))
+                .get().getTitle());
 
-            System.out.println(" with rating of " + movies.stream()
-                    .map(Movie::averageMovieRating)
-                    .filter(s -> !s.equals("Still no rating"))
-                    .max(String::compareTo)
-                    .get() + ".");
+        System.out.println(" with rating of " + movies.stream()
+                .map(Movie::averageMovieRating)
+                .filter(s -> !s.equals("Still no rating"))
+                .max(String::compareTo)
+                .get() + ".");
 
         em.close();
 
@@ -122,7 +125,7 @@ public class StatisticDao {
                 .getSingleResult();
 
         System.out.println("\nMovies with the " + genre.toString() + " genre is: ");
-        g.getMovies().forEach(movie->System.out.println(movie.getTitle()));
+        g.getMovies().forEach(movie -> System.out.println(movie.getTitle()));
 
 
         em.close();

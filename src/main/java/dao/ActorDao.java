@@ -10,6 +10,10 @@ import java.util.List;
 public class ActorDao {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
 
+    public void closeEmf() {
+        emf.close();
+    }
+
     public void addNewActor(Actor actor) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -37,7 +41,7 @@ public class ActorDao {
         em.getTransaction().begin();
         try {
             actor.setName(newActorName);
-        }catch (NullPointerException n){
+        } catch (NullPointerException n) {
             System.out.println("The inputted object does not exist in the database.");
         }
         em.getTransaction().commit();
@@ -50,7 +54,7 @@ public class ActorDao {
         em.getTransaction().begin();
         try {
             actor.setAge(newActorAge);
-        }catch (NullPointerException n){
+        } catch (NullPointerException n) {
             System.out.println("The inputted object does not exist in the database.");
         }
         em.getTransaction().commit();
@@ -63,7 +67,7 @@ public class ActorDao {
         em.getTransaction().begin();
         try {
             actor.setGender(actorGender);
-        }catch (NullPointerException n){
+        } catch (NullPointerException n) {
             System.out.println("The inputted object does not exist in the database.");
         }
         em.getTransaction().commit();
@@ -75,7 +79,7 @@ public class ActorDao {
         em.getTransaction().begin();
         try {
             em.remove(em.find(Actor.class, actorId));
-        }catch (IllegalArgumentException i){
+        } catch (IllegalArgumentException i) {
             System.out.println("The inputted object does not exist in the database.");
             return;
         }
