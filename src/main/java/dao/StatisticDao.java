@@ -20,11 +20,11 @@ public class StatisticDao {
 
         EntityManager em = emf.createEntityManager();
 
-        System.out.println("Actors");
+        System.out.print("\nActors");
 
         em.createNamedQuery("Actor.findAll", Actor.class).getResultList().forEach(System.out::println);
 
-        System.out.println("Directors");
+        System.out.print("\nDirectors");
 
         em.createNamedQuery("Director.findAll", Director.class).getResultList().forEach(System.out::println);
 
@@ -56,16 +56,13 @@ public class StatisticDao {
         Long males = em.createQuery("SELECT COUNT(a.gender) FROM Actor a WHERE a.gender = :male", Long.class)
                 .setParameter("male", "Male").getSingleResult();
 
-//        double f = females.doubleValue();
 
-        double percentFemale = ((double) females / (double) (females + males) * 100.0);
-        double percentMale = ((double) males / (double) (females + males) * 100.0);
 
-        System.out.println("Total Number of Actors= " + (females + males));
+        System.out.println("\nTotal Number of Actors= " + (females + males));
         System.out.println("Total Number of Female Actors= " + females);
         System.out.println("Total Number of Male Actors= " + males);
-        System.out.println("Percentage of Female Actors= " + percentFemale + "%");
-        System.out.println("Percentage of Male Actors= " + percentMale + "%");
+        System.out.printf("Percentage of Female actors = %.2f%%\n", ((double) females / (double) (females + males) * 100.0));
+        System.out.printf("Percentage of Male actors = %.2f%%\n", ((double) males / (double) (females + males) * 100.0));
 
         em.close();
     }
@@ -85,7 +82,7 @@ public class StatisticDao {
                     .getTitle());
 
             System.out.println(" with rating of " + movies.stream()
-                    .map(m -> m.averageMovieRating())
+                    .map(Movie::averageMovieRating)
                     .filter(s -> !s.equals("Still no rating"))
                     .min(String::compareTo)
                     .get() + ".");
@@ -108,8 +105,8 @@ public class StatisticDao {
                     .get().getTitle());
 
             System.out.println(" with rating of " + movies.stream()
-                    .filter(m -> !m.averageMovieRating().equals("Still no rating"))
-                    .map(m -> m.averageMovieRating())
+                    .map(Movie::averageMovieRating)
+                    .filter(s -> !s.equals("Still no rating"))
                     .max(String::compareTo)
                     .get() + ".");
 

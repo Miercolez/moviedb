@@ -14,12 +14,13 @@ public class MovieGenreDao {
     public void AddGenre(MovieGenre movieGenre) {
 
         EntityManager em = emf.createEntityManager();
-        List<MovieGenre> movieGenress = em.createNamedQuery("MovieGenre.findAll", MovieGenre.class).getResultList();
+
         try {
             em.getTransaction().begin();
             em.persist(movieGenre);
             em.getTransaction().commit();
         } catch (Exception e) {
+            System.out.println("This genre already exist in the database.");
         }
         em.close();
     }

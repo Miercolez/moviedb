@@ -1,6 +1,7 @@
 package Menus;
 
 import Functions.MovieFunctions;
+import dao.MovieDao;
 import models.MovieGenre;
 import utility.Genres;
 
@@ -89,7 +90,7 @@ public class MovieMenu {
 
         if (genres.size() != 0) {
             List<String> genresString = genres.stream()
-                    .map(g -> g.getGenre().getLable())
+                    .map(g -> g.getGenre().getLabel())
                     .collect(Collectors.toList());
             int index = chooseFromGenreList(genresString) - 1;
             MovieGenre movieGenre = genres.get(index);
@@ -116,10 +117,14 @@ public class MovieMenu {
         MovieFunctions.removeDirectorFromMovie(movieId);
     }
 
+
     private static void removeActorFromMovie() {
+        MovieDao movieDao = new MovieDao();
         showAllMovies();
         System.out.println("Movie id: ");
         Long movieId = readLong();
+
+        System.out.println(movieDao.findMovie(movieId).getActors());
 
         System.out.println("Actor id: ");
         Long actorId = readLong();
@@ -138,14 +143,20 @@ public class MovieMenu {
     }
 
     private static void changeActor() {
+        MovieDao movieDao = new MovieDao();
         showAllMovies();
         System.out.println("Movie id: ");
         Long movieId = readLong();
-        showAllActors();
+
+        System.out.println(movieDao.findMovie(movieId).getActors());
+
         System.out.println("Actor id: ");
         Long oldActorId = readLong();
+
+        showAllActors();
         System.out.println("New actor id: ");
         Long newActorId = readLong();
+
         MovieFunctions.changeActor(movieId, oldActorId, newActorId);
 
     }
@@ -173,7 +184,7 @@ public class MovieMenu {
 
     }
 
-    private static void showAllMovies() {
+    public static void showAllMovies() {
         MovieFunctions.showAllMovies();
         System.out.println();
     }

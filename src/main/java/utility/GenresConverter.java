@@ -12,7 +12,7 @@ public class GenresConverter implements AttributeConverter<Genres, String> {
         if (genres == null) {
             return null;
         }
-        return genres.lable;
+        return genres.label;
     }
 
     @Override
@@ -21,7 +21,7 @@ public class GenresConverter implements AttributeConverter<Genres, String> {
             return null;
         }
         return Stream.of(Genres.values())
-                .filter(g -> g.getLable().equals(s))
+                .filter(g -> g.getLabel().equals(s))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }

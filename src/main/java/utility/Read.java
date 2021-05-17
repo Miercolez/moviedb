@@ -8,13 +8,11 @@ public class Read {
     static Scanner sc = new Scanner(System.in);
 
     public static int readInt() {
-        boolean loop = true;
-        while (loop) {
+
+        while (true) {
             try {
 
-                int temp = sc.nextInt();
-                loop = false;
-                return temp;
+                return sc.nextInt();
 
             } catch (InputMismatchException inputMismatchException) {
 
@@ -26,17 +24,14 @@ public class Read {
                 sc.nextLine();
             }
         }
-        return 0;
     }
 
     public static Long readLong() {
-        boolean loop = true;
-        while (loop) {
+
+        while (true) {
             try {
 
-                Long temp = sc.nextLong();
-                loop = false;
-                return temp;
+                return sc.nextLong();
 
             } catch (InputMismatchException inputMismatchException) {
 
@@ -48,29 +43,6 @@ public class Read {
                 sc.nextLine();
             }
         }
-        return 0L;
-    }
-
-    public static double readDouble() {
-        boolean loop = true;
-        while (loop) {
-            try {
-
-                double temp = sc.nextDouble();
-                loop = false;
-                return temp;
-
-            } catch (InputMismatchException inputMismatchException) {
-
-                System.out.println("Wrong input, please try again.");
-
-                System.out.print("\nMake a choice: ");
-
-            } finally {
-                sc.nextLine();
-            }
-        }
-        return 0;
     }
 
     public static String readLine() {
@@ -80,7 +52,7 @@ public class Read {
     public static Genres readGenre() {
         List<Genres> genres = Arrays.asList(Genres.values());
         List<String> genresString = genres.stream()
-                .map(g -> g.getLable())
+                .map(Genres::getLabel)
                 .collect(Collectors.toList());
         int chosenGenre = chooseFromGenreList(genresString) - 1;
 

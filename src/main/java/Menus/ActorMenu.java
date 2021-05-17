@@ -92,19 +92,6 @@ public class ActorMenu {
         System.out.println("Age: ");
         int actorAge = readInt();
         String actorGender = GenderChoice.chooseGender();
-//        System.out.println("Gender: ");
-//        System.out.println("1. Man");
-//        System.out.println("2. Woman");
-//        int choice = readInt();
-//        if (choice == 1) {
-//            actorGender = "Man";
-//            ActorFunctions.addNewActor(actorName, actorAge, actorGender);
-//        } else if (choice == 2) {
-//            actorGender = "Woman";
-//
-//        } else {
-//            System.out.println("Wrong input, that gender does not exist");
-//        }
 
         ActorFunctions.addNewActor(actorName, actorAge, actorGender);
 

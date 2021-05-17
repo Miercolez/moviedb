@@ -5,7 +5,7 @@ import static utility.Read.*;
 public class GenderChoice {
 
     public static String chooseGender() {
-        String gender;
+
 
         while (true) {
 
@@ -16,9 +16,9 @@ public class GenderChoice {
 
             switch (choice) {
                 case 1:
-                    return gender = "Female";
+                    return "Female";
                 case 2:
-                    return gender = "Male";
+                    return "Male";
                 default:
                     System.out.println("Wrong input!");
             }
